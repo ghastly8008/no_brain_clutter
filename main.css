@@ -1,0 +1,24 @@
+
+#body {
+    margin-top: 60px;
+    margin-left: 5%;
+}
+
+p {
+    width:40%;
+    color:grey;
+}
+
+button {
+    width:100px;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+li {
+    padding: 10px;
+}
