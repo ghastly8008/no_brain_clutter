@@ -32,6 +32,55 @@ body.appendChild(submitBtn);
         }
     });
 
+
+//create drop down day of week
+//create dd div
+const ddDiv = document.createElement('div');
+ddDiv.setAttribute("class", 'dropdown');
+
+//create dd button
+const ddBtn = document.createElement('button');
+ddBtn.innerHTML = "Add to";
+ddBtn.setAttribute("class", 'dropdownBtn');
+ddBtn.addEventListener('click', ddBtnHov);
+
+//add dd button to dd div
+ddDiv.appendChild(ddBtn);
+
+//create list of days div that button will reveal
+const daysList = document.createElement('div');
+daysList.setAttribute("class", 'days');
+daysList.setAttribute("id", "days");
+
+var dayofWk = ['Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday','Sunday'];
+
+//create elemnt for each day and add to days div
+for (var i = 0 ; i<7 ; i++){
+    var day = document.createElement('p');
+    day.setAttribute("id", `day${i}`);
+    day.innerHTML = dayofWk[i];
+    day.addEventListener('click', add);
+    day.addEventListener('click', hideDaysList);
+    daysList.appendChild(day);
+}
+
+ddDiv.appendChild(daysList);
+
+function hideDaysList(){
+    daysList.classList.toggle("show");
+}
+
+function ddBtnHov(){
+    console.log(daysList);
+    console.log(body);
+    daysList.classList.toggle("show");
+}
+
+//add dd div to body
+
+body.appendChild(ddDiv);
+
+
 //create list div and list and add both    
 const listDiv = document.createElement('div');
 listDiv.setAttribute("id", 'listDiv');
@@ -41,6 +90,8 @@ listDiv.setAttribute("id", 'listUl');
 listDiv.appendChild(listUl);
 
  
+
+
 var count = 0;
 
 //submit button function
