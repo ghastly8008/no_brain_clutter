@@ -1,31 +1,36 @@
 
+const header = document.getElementById('header');
 const body = document.getElementById('body');
 
 
 const h1 = document.createElement('h1');
 const title = document.createTextNode("Welcome to No Mind Clutter");
 h1.appendChild(title);
-body.appendChild(h1);
+header.appendChild(h1);
 
 const p = document.createElement('p');
 const introText = document.createTextNode(`Life can be messy and stressful. 
 We keep a lot of thoughts in our minds. They in essence create traffic up there making it harder to think clearly and relax.
 We exist to help you clear the traffic and breathe`);
 p.appendChild(introText);
-body.appendChild(p);
+header.appendChild(p);
+
+//create "task" Item
+
+const task = document.createElement('p');
+task.setAttribute("id", "task");
+const taskText = document.createTextNode("Enter task");
+task.appendChild(taskText);
+body.appendChild(task);
+
+
+
 
 //create and add input field
 const input = document.createElement('input');
 body.appendChild(input);
 
-//create and add submit button
-const submitBtn = document.createElement('button');
-submitBtn.innerHTML = "Add";
-submitBtn.setAttribute("id", 'submitBtn');
-body.appendChild(submitBtn);
-
     //add click and enter key events to submit button
-    submitBtn.addEventListener('click', add);
     window.addEventListener('keypress', function(e) {
         if (e.keyCode === 13) {
             add();
@@ -96,6 +101,9 @@ var count = 0;
 
 //submit button function
 function add (){
+ if (input.value == ''){
+     return null
+ }   
  count++;
  var itemEle = document.createElement('li'); //create li element
  itemEle.setAttribute("id", `item${count}`); //set id of item element   
