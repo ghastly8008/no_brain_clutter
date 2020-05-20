@@ -1,4 +1,7 @@
 
+// const taskDiv = document.createElement('div');
+// body.appendChild(taskDiv);
+
 const header = document.getElementById('header');
 const body = document.getElementById('body');
 
@@ -59,25 +62,34 @@ daysList.setAttribute("id", "days");
 
 var dayofWk = ['Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday','Sunday'];
 
+
 //create elemnt for each day and add to days div
 for (var i = 0 ; i<7 ; i++){
     var day = document.createElement('p');
     day.setAttribute("id", `day${i}`);
+    day.setAttribute("class", 'day');
     day.innerHTML = dayofWk[i];
     day.addEventListener('click', add);
     day.addEventListener('click', hideDaysList);
     daysList.appendChild(day);
 }
 
-ddDiv.appendChild(daysList);
+ddBtn.appendChild(daysList);
+
+// window.addEventListener('click', hideDaysList2);
+// function hideDaysList2(){
+//     if (daysList.classList.toggle("show") == true){;
+//         console.log("test");
+// }}
 
 function hideDaysList(){
     daysList.classList.toggle("show");
 }
 
 function ddBtnHov(){
-    console.log(daysList);
-    console.log(body);
+    if (input.value == ''){
+        return null
+    }
     daysList.classList.toggle("show");
 }
 
@@ -94,16 +106,14 @@ const listUl = document.createElement('ul');
 listDiv.setAttribute("id", 'listUl');
 listDiv.appendChild(listUl);
 
- 
-
-
 var count = 0;
 
 //submit button function
 function add (){
  if (input.value == ''){
      return null
- }   
+ }
+ //daysList.classList.toggle("show");   
  count++;
  var itemEle = document.createElement('li'); //create li element
  itemEle.setAttribute("id", `item${count}`); //set id of item element   
@@ -123,6 +133,19 @@ function add (){
 
  itemEle.appendChild(itemBtn);
 }
+
+
+///***///NOTES SECTION////***/////
+
+const notesDiv = document.createElement('div');
+body.appendChild(notesDiv);
+
+
+const notesInput = document.createElement('input');
+notesDiv.appendChild(notesInput);
+
+
+
 
 
 
