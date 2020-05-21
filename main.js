@@ -1,6 +1,4 @@
-
-// const taskDiv = document.createElement('div');
-// body.appendChild(taskDiv);
+///***///HEADER SECTION////***/////
 
 const header = document.getElementById('header');
 const body = document.getElementById('body');
@@ -18,20 +16,14 @@ We exist to help you clear the traffic and breathe`);
 p.appendChild(introText);
 header.appendChild(p);
 
-//create "task" Item
-
-const task = document.createElement('p');
-task.setAttribute("id", "task");
-const taskText = document.createTextNode("Enter task");
-task.appendChild(taskText);
-body.appendChild(task);
-
+///***///TASK LIST SECTION////***/////
 
 
 
 //create and add input field
 const input = document.createElement('input');
-body.appendChild(input);
+input.value = "Enter";
+taskDiv.appendChild(input);
 
     //add click and enter key events to submit button
     window.addEventListener('keypress', function(e) {
@@ -95,13 +87,13 @@ function ddBtnHov(){
 
 //add dd div to body
 
-body.appendChild(ddDiv);
+taskDiv.appendChild(ddDiv);
 
 
 //create list div and list and add both    
 const listDiv = document.createElement('div');
 listDiv.setAttribute("id", 'listDiv');
-body.appendChild(listDiv);
+taskDiv.appendChild(listDiv);
 const listUl = document.createElement('ul');
 listDiv.setAttribute("id", 'listUl');
 listDiv.appendChild(listUl);
@@ -137,16 +129,58 @@ function add (){
 
 ///***///NOTES SECTION////***/////
 
-const notesDiv = document.createElement('div');
-body.appendChild(notesDiv);
+//create note input field //check
+const noteDiv = document.getElementById('noteDiv');
+const noteInput = document.createElement('input');
+noteInput.value = "Enter"
+
+noteDiv.appendChild(noteInput); //add note input field to noteDiv
 
 
-const notesInput = document.createElement('input');
-notesDiv.appendChild(notesInput);
+const noteDD = document.createElement('div');
+noteDD.setAttribute("class", 'noteDD');
+
+noteDiv.appendChild(noteDD); //add noteDD(btn + list) to noteDiv
+
+//create note button
+const noteBtn = document.createElement('button');
+noteBtn.innerHTML = "Label";
+noteBtn.setAttribute("class", 'noteBtn');
+noteBtn.addEventListener('click', noteBtnClk);
+noteDD.appendChild(noteBtn);  //add note Btn to noteDiv
 
 
+//create notelist div and list and add to noteDiv    
+const noteListDiv = document.createElement('div');
+noteListDiv.setAttribute("class", 'notes');
+
+noteBtn.appendChild(noteListDiv); //add note list div to button
 
 
+//create type list for noteBtn
+var noteType = ['Note','Idea','Reflection','Self Feedback','Other'];
+
+
+for (var i=0 ;i<5 ; i++){
+    var note = document.createElement('p');
+    note.setAttribute("id", `type${i}`);
+    note.setAttribute("class", 'type');
+    note.innerHTML = noteType[i];
+    //note.addEventListener('click', addNote);
+    //note.addEventListener('click', hideNoteList);
+    noteListDiv.appendChild(note);
+};
+
+noteBtn.appendChild(noteListDiv); //add noteList to noteBtn
+
+
+//function to show and hide note list when noteBtn is clicked
+function noteBtnClk(){
+    if (input.value == ''){
+        return null
+    }
+    noteListDiv.classList.toggle("show2");
+}
 
 
 
