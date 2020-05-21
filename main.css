@@ -33,6 +33,10 @@ input {
     display: inline;
 }
 
+.noteDropDown {
+    display: inline;
+}
+
 /*  Task Section */
 .days {
     display: none;
@@ -54,7 +58,7 @@ input {
     display: block;
   }
 
-  .day:hover {
+.day:hover {
     background-color:rgb(212, 211, 211);
   }
 
@@ -79,12 +83,11 @@ input {
 
 #taskDiv {
     float: left;
-    margin-top: 0px;
     margin-left: 8%;
 }
 
 
-#notesDiv {
+#noteDiv {
     float: right;
     margin-right: 30%;
     text-align: left;
