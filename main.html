@@ -5,13 +5,38 @@
 </head>
 
 <body id="body">
-    <div id="header"></div>
-    <div id= "content">
+    <div id="header">
+        <h1>Welcome to No Mind Clutter</h1>
+        <p>Life can be messy and stressful.
+            We keep a lot of thoughts in our minds. They in essence create
+            traffic up there making it harder to think clearly and relax.
+            We exist to help you clear the traffic and breathe</p>
+    </div>
+    <div id="content">
         <div id="taskDiv">
             <h2>Stuff & Things</h2>
+            <input id=taskInput value="Enter"></input>
+            <div id="taskDropDown" class="dropdown">
+                <button type="button" class="taskBtn" id="taskBtn">Add to
+                    <div id="days" class="days"></div>
+                </button>
+                    <ul id="taskList">
+                        <li></li>
+                    </ul>
+            </div>
         </div>
         <div id="noteDiv">
             <h2>Thoughts & Notes</h2>
+            <input id=noteInput value="Enter"></input>
+            <div class="noteDropDown" id="noteDD">
+                <button type="button" class="noteBtn" id="noteBtn">Label
+                    <div id="notes" class="notes">
+                </button>
+                    <ul id="noteList">
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
