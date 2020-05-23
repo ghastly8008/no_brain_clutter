@@ -1,9 +1,36 @@
 
 
-p {
-    width:50%;
+.headerWrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 40px;
+    margin-left: 5%;
+}
+
+#introText {
     color:grey;
 }
+
+.headerSubmit {
+    border: 1px dashed grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: 1/3;
+    grid-column: 2/3;
+    margin: 2%;
+    padding: 3%;
+    grid-gap: 2em;
+
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 4%;
+    grid-gap: 2em;
+
+}
+
 
 button {
     width:100px;
@@ -11,21 +38,22 @@ button {
     display: inline;
 }
 
-ul {
-    list-style-type: none;
-    text-align: center;
-    width: 300px;
-    display: inline;
-}
 
-li {
+input {
+    margin-top: 0px;
+   }   
+
+
+.taskListItems {
     padding: 10px;
     display: block;
     width: 300px;
 }
 
-input {
- margin-top: 0px;
+.noteListItems {
+    padding: 10px;
+    display: block;
+    width: 300px;
 }
 
 
@@ -38,6 +66,7 @@ input {
 }
 
 /*  Task Section */
+
 .days {
     display: none;
     position: absolute;
@@ -64,43 +93,7 @@ input {
 
 .show {display: block;}
 
-
-#header {
-    margin-top: 60px;
-    margin-left: 5%;
-}
-
-#body {
-    margin-top: 30px;
-    margin-left: 8%;
-    display: inline;
-}
-
-#listUl {
-    width: 300px;
-    display: inline;
-}
-
-#taskDiv {
-    float: left;
-    margin-left: 8%;
-}
-
-
-#noteDiv {
-    float: right;
-    margin-right: 30%;
-    text-align: left;
-}
-
-
 /*  Notes Section */
-
-.test {
-    color: coral;
-}
-
-
 
 .notes {
     display: none;
@@ -122,10 +115,29 @@ input {
     display: block;
   }
 
-  .note:hover {
+.note:hover {
     background-color:rgb(212, 211, 211);
   }
 
 .show2 {
     display: block;
+}
+
+/*  Notes Section */
+
+.projectsDiv{
+    border: 1px dashed grey;
+}
+
+.goalsDiv {
+    border: 1px dashed grey;
+    /* grid-row: 1/3;
+    grid-column: 1/3
+         */
+}
+
+.projGoalsDiv {
+    grid-gap: 5em;
+    display: grid;
+    grid-template-columns: 1fr;   
 }

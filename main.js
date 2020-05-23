@@ -32,7 +32,8 @@ function addTask() {
     var count = 0;
     count++;
     var itemEle = document.createElement('li'); //create li element
-    itemEle.setAttribute("id", `task${count}`); //set id of item element   
+    itemEle.setAttribute("class", "taskListItems");
+    itemEle.setAttribute("id", `task${count}`); 
     taskList.appendChild(itemEle);
 
     var itemValue = taskInput.value; //create variable = input value
@@ -103,6 +104,7 @@ function addNote() {
     var count2 = 0;
     count2++;
     var note = document.createElement('li'); //create li element
+    note.setAttribute("class", "noteListItems");
     note.setAttribute("id", `note${count2}`); //set id of item element   
 
     var noteValue = noteInput.value; //create variable = input value

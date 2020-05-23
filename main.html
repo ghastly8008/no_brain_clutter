@@ -5,14 +5,28 @@
 </head>
 
 <body id="body">
-    <div id="header">
-        <h1>Welcome to No Mind Clutter</h1>
-        <p>Life can be messy and stressful.
+    <div class="headerWrapper">
+        <h1>No Mind Clutter</h1>
+        <div class="headerSubmit">
+            <div class="proud">
+                <p>What is something you just did or just happened that you <strong>are</strong> proud of?</p>
+                <input id=proudInput value="Proud Of"></input>
+                <button type="button" class="proudBtns">: )</button>
+
+            </div>
+            <div class="notProud">
+                <p>What is something you just did or just happened that you are <strong>not</strong> proud of?</p>
+                <input id=notProudInput value="Not Proud Of"></input>
+                <button type="button" class="proudBtns">: (</button>
+
+            </div>
+        </div>
+        <p id="introText">Life can be messy and stressful.
             We keep a lot of thoughts in our minds. They in essence create
             traffic up there making it harder to think clearly and relax.
-            We exist to help you clear the traffic and breathe</p>
+            We exist to help you clear the traffic and breathe a bit easier.</p>
     </div>
-    <div id="content">
+    <div class="wrapper">
         <div id="taskDiv">
             <h2>Stuff & Things</h2>
             <input id=taskInput value="Enter"></input>
@@ -20,7 +34,7 @@
                 <button type="button" class="taskBtn" id="taskBtn">Add to
                     <div id="days" class="days"></div>
                 </button>
-                    <ul id="taskList"></ul>
+                <ul id="taskList"></ul>
             </div>
         </div>
         <div id="noteDiv">
@@ -30,12 +44,22 @@
                 <button type="button" class="noteBtn" id="noteBtn">Label
                     <div id="notes" class="notes">
                 </button>
-                    <ul id="noteList"></ul>
-                </div>
+                <ul id="noteList"></ul>
+            </div>
+        </div>
+        <div class=projGoalsDiv>
+            <div class="projectsDiv">
+                <h2>Big Tasks (Projects?)</h2>
+                <input id=bigTaskInput value="Enter"></input>
+
+            </div>
+            <div class="goalsDiv">
+                <h2>Personal Goals</h2>
+                <input id=goalsInput value="Enter"></input>
+                
             </div>
         </div>
     </div>
 </body>
-
 
 <script src="main.js"></script>
