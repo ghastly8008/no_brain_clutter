@@ -8,6 +8,7 @@ const taskBtn = document.getElementById('taskBtn');
 const daysList = document.getElementById('days');
 const taskList = document.getElementById('taskList');
 
+
 //have days list appear on task button click
 taskBtn.addEventListener('click', taskBtnClk);
 
@@ -33,7 +34,7 @@ function addTask() {
     count++;
     var itemEle = document.createElement('li'); //create li element
     itemEle.setAttribute("class", "taskListItems");
-    itemEle.setAttribute("id", `task${count}`); 
+    itemEle.setAttribute("id", `task${count}`);
     taskList.appendChild(itemEle);
 
     var itemValue = taskInput.value; //create variable = input value
@@ -69,7 +70,7 @@ function taskBtnClk() {
         return null
     }
     daysList.classList.toggle("show");
-}   
+}
 
 ///***///NOTES SECTION////***/////
 
@@ -95,6 +96,69 @@ for (var i = 0; i < 5; i++) {
     typeList.appendChild(type);
 };
 
+//create edit labels button
+
+const editLabelsSection = document.getElementById('editLabels');
+
+const editLabelBtn = document.createElement('p');
+editLabelBtn.innerHTML = "Edit Labels";
+editLabelBtn.setAttribute("id", 'editLabelBtn');
+typeList.appendChild(editLabelBtn);
+editLabelBtn.addEventListener('click', genLabelEdit);
+
+//function that displays editLabelsSection
+
+function genLabelEdit() {
+    editLabelsSection.classList.toggle("show3");
+}
+
+//create edit labels section with orginal "noteType" list
+
+
+labelsList = document.getElementById('labelsList');
+
+for (var i=0; i<(noteType.length); i++){
+    const labelInput = document.createElement('input');
+    labelInput.setAttribute("id", `noteType${i}`)
+    labelInput.value = noteType[i];
+    labelsList.appendChild(labelInput);
+}
+
+//add label button feature
+
+const addLabelBtn = document.getElementById("addLabelBtn");
+
+addLabelBtn.addEventListener('click', function (e) {
+    const newField = document.createElement('input');
+    newField.setAttribute("id", `noteType${
+        document.getElementById('labelsLsit').getElementsByTagName("input").length
+    }`)
+    labelsList.appendChild(newField);
+});
+
+//remove label button feature
+
+const removeLabelBtn = document.getElementById("removeLabelBtn");
+
+removeLabelBtn.addEventListener('click', function (e) {
+    let menu = labelsList;
+    menu.removeChild(menu.lastElementChild);
+});
+
+//update button feature which updates noteType elements
+
+// const updateLabelBtn = document.getElementById("updateLabelBtn");
+// updateLabelBtn.addEventListener('click', updateNoteType);
+
+// function updateNoteType() {
+//     var noteType = [];
+    
+
+// }
+
+// get 
+
+
 //create element and check off button and add to task list
 function addNote() {
     if (noteInput.value == '') {
@@ -118,7 +182,7 @@ function addNote() {
     noteBtn.setAttribute("id", `noteBtn${count2}`);
     noteBtn.innerHTML = "done";
     noteBtn.addEventListener('click', function (e) {
-    noteList.removeChild(note);
+        noteList.removeChild(note);
     });
 
     note.appendChild(noteBtn);

@@ -141,3 +141,13 @@ input {
     display: grid;
     grid-template-columns: 1fr;   
 }
+
+/* Edit Labels Section */
+
+.editLabels {
+    display: none;
+}
+
+.show3 {
+    display: block;
+}
