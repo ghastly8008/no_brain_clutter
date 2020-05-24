@@ -96,7 +96,7 @@ for (var i = 0; i < 5; i++) {
     typeList.appendChild(type);
 };
 
-//create edit labels button
+///***///EDIT LABELS SECTION////***/////
 
 const editLabelsSection = document.getElementById('editLabels');
 
@@ -130,9 +130,6 @@ const addLabelBtn = document.getElementById("addLabelBtn");
 
 addLabelBtn.addEventListener('click', function (e) {
     const newField = document.createElement('input');
-    newField.setAttribute("id", `noteType${
-        document.getElementById('labelsLsit').getElementsByTagName("input").length
-    }`)
     labelsList.appendChild(newField);
 });
 
@@ -147,16 +144,20 @@ removeLabelBtn.addEventListener('click', function (e) {
 
 //update button feature which updates noteType elements
 
-// const updateLabelBtn = document.getElementById("updateLabelBtn");
-// updateLabelBtn.addEventListener('click', updateNoteType);
+const updateLabelBtn = document.getElementById("updateLabelBtn");
+updateLabelBtn.addEventListener('click', updateNoteType);
 
-// function updateNoteType() {
-//     var noteType = [];
-    
+function updateNoteType() {
+    var noteList = document.getElementById('noteList');
+    noteList.innerHTML = "";
+    var ul = document.getElementById('labelsList');
+    var item = ul.getElementsByTagName("li");
+    for (var i=0; i < item.length; i++) {
+        noteType.push(item[i]);
+    }
+    editLabelsSection.classList.toggle("show3");
+ }
 
-// }
-
-// get 
 
 
 //create element and check off button and add to task list
