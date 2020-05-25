@@ -86,6 +86,10 @@ noteBtn.addEventListener('click', noteBtnClk);
 
 //create type list for noteBtn
 var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
+var count = 0;
+
+// if (count = 0) {}
+
 for (var i = 0; i < 5; i++) {
     var type = document.createElement('p');
     type.setAttribute("id", `type${i}`);
@@ -95,70 +99,6 @@ for (var i = 0; i < 5; i++) {
     type.addEventListener('click', hideNoteList);
     typeList.appendChild(type);
 };
-
-///***///EDIT LABELS SECTION////***/////
-
-const editLabelsSection = document.getElementById('editLabels');
-
-const editLabelBtn = document.createElement('p');
-editLabelBtn.innerHTML = "Edit Labels";
-editLabelBtn.setAttribute("id", 'editLabelBtn');
-typeList.appendChild(editLabelBtn);
-editLabelBtn.addEventListener('click', genLabelEdit);
-
-//function that displays editLabelsSection
-
-function genLabelEdit() {
-    editLabelsSection.classList.toggle("show3");
-}
-
-//create edit labels section with orginal "noteType" list
-
-
-labelsList = document.getElementById('labelsList');
-
-for (var i=0; i<(noteType.length); i++){
-    const labelInput = document.createElement('input');
-    labelInput.setAttribute("id", `noteType${i}`)
-    labelInput.value = noteType[i];
-    labelsList.appendChild(labelInput);
-}
-
-//add label button feature
-
-const addLabelBtn = document.getElementById("addLabelBtn");
-
-addLabelBtn.addEventListener('click', function (e) {
-    const newField = document.createElement('input');
-    labelsList.appendChild(newField);
-});
-
-//remove label button feature
-
-const removeLabelBtn = document.getElementById("removeLabelBtn");
-
-removeLabelBtn.addEventListener('click', function (e) {
-    let menu = labelsList;
-    menu.removeChild(menu.lastElementChild);
-});
-
-//update button feature which updates noteType elements
-
-const updateLabelBtn = document.getElementById("updateLabelBtn");
-updateLabelBtn.addEventListener('click', updateNoteType);
-
-function updateNoteType() {
-    var noteList = document.getElementById('noteList');
-    noteList.innerHTML = "";
-    var ul = document.getElementById('labelsList');
-    var item = ul.getElementsByTagName("li");
-    for (var i=0; i < item.length; i++) {
-        noteType.push(item[i]);
-    }
-    editLabelsSection.classList.toggle("show3");
- }
-
-
 
 //create element and check off button and add to task list
 function addNote() {
@@ -211,6 +151,81 @@ function hideNoteList() {
     typeList.classList.toggle("show2");
 }
 
+
+///***///EDIT LABELS SECTION////***/////
+
+const editLabelsSection = document.getElementById('editLabels');
+
+const editLabelBtn = document.createElement('p');
+editLabelBtn.innerHTML = "Edit Labels";
+editLabelBtn.setAttribute("id", 'editLabelBtn');
+typeList.appendChild(editLabelBtn);
+editLabelBtn.addEventListener('click', genLabelEdit);
+
+//function that displays editLabelsSection
+
+function genLabelEdit() {
+    editLabelsSection.classList.toggle("show3");
+}
+
+//create edit labels section with orginal "noteType" list
+
+labelsList = document.getElementById('labelsList');
+
+for (var i=0; i<(noteType.length); i++){
+    const labelInput = document.createElement('input');
+    labelInput.setAttribute("id", `noteType${i}`)
+    labelInput.value = noteType[i];
+    labelsList.appendChild(labelInput);
+}
+
+//add label button feature
+var ul = document.getElementById('labelsList');
+const addLabelBtn = document.getElementById("addLabelBtn");
+
+addLabelBtn.addEventListener('click', function (e) {
+    const newField = document.createElement('input');
+    newField.setAttribute("id", `noteType${ul.childNodes.length}`)
+    labelsList.appendChild(newField);
+});
+
+//remove label button feature
+
+const removeLabelBtn = document.getElementById("removeLabelBtn");
+
+removeLabelBtn.addEventListener('click', function (e) {
+    let menu = labelsList;
+    menu.removeChild(menu.lastElementChild);
+});
+
+//update button feature which updates noteType elements
+
+const updateLabelBtn = document.getElementById("updateLabelBtn");
+updateLabelBtn.addEventListener('click', updateNoteType);
+updateLabelBtn.addEventListener('click', updateNoteTypeLog);
+
+function updateNoteType() {
+    var noteList = document.getElementById('noteList');
+    noteList.innerHTML = "";
+    var ul = document.getElementById('labelsList');
+    var item = ul.getElementsByTagName("li");
+    for (var i=0; i < item.length; i++) {
+        noteType.push(item[i]);
+    }
+    editLabelsSection.classList.toggle("show3");
+ }
+
+ //create new array out of items in input fields in order to repopuate list with
+
+var updNoteType = [];
+function updateNoteTypeLog()
+{
+    for (var i = 0; i < ul.childNodes.length; i++) {
+    var test = document.getElementById(`noteType${i}`);
+    updNoteType.push(test.value);
+    console.log(updNoteType);
+}
+}
 
 
 
