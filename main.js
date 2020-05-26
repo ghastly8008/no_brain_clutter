@@ -159,6 +159,7 @@ const editLabelsSection = document.getElementById('editLabels');
 const editLabelBtn = document.createElement('p');
 editLabelBtn.innerHTML = " Edit Labels";
 editLabelBtn.setAttribute("id", 'editLabelBtn');
+editLabelBtn.setAttribute("class", 'type');
 typeList.appendChild(editLabelBtn);
 editLabelBtn.addEventListener('click', genLabelEdit);
 
@@ -189,7 +190,29 @@ addLabelBtn.addEventListener('click', function (e) {
     labelsList.appendChild(newField);
 });
 
-//add event to populate note list on 'lebl button click
+//return list to previous state and cancel when you hit cancel
+
+const cancelLabelBtn = document.getElementById('cancelLableBtn');
+cancelLabelBtn.addEventListener('click', function (e) {
+    editLabelsSection.classList.toggle("show3");
+});
+
+cancelLabelBtn.addEventListener('click', returnToInitialState);
+
+function returnToInitialState(){
+    while (labelsList.firstChild) {
+        labelsList.removeChild(labelsList.lastChild);
+    }
+    for (var i = 0; i < (noteType.length); i++) {
+        const labelInput = document.createElement('input');
+        labelInput.setAttribute("id", `noteType${i}`)
+        labelInput.value = noteType[i];
+        labelsList.appendChild(labelInput);
+    }
+}
+
+
+//add event to populate note list on label button click
 const labelBtn = document.getElementById('noteBtn');
 labelBtn.addEventListener('click', updateNoteTypeLog);
 
@@ -210,8 +233,6 @@ updateLabelBtn.addEventListener('click', updateNoteType);
 updateLabelBtn.addEventListener('click', updateNoteTypeLog);
 
 function updateNoteType() {
-    var noteList = document.getElementById('noteList');
-    noteList.innerHTML = "";
     var ul = document.getElementById('labelsList');
     var item = ul.getElementsByTagName("li");
     for (var i = 0; i < item.length; i++) {
@@ -241,7 +262,6 @@ function updateNoteTypeLog() {
         type.addEventListener('click', hideNoteList);
         typeList.appendChild(type);
     }
-    //console.log(updNoteType);
 }
 
 
