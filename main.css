@@ -151,3 +151,8 @@ input {
 .show3 {
     display: block;
 }
+
+#editLabelBtn {
+border: 2px solid grey;
+border-radius: 8px;
+}
