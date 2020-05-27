@@ -53,11 +53,11 @@ function addTask() {
 }
 
 //add click and enter key events to submit button
-window.addEventListener('keypress', function (e) {
-    if (e.keyCode === 13) {
-        addTask();
-    }
-});
+// window.addEventListener('keypress', function (e) {
+//     if (e.keyCode === 13) {
+//         addTask();
+//     }
+// });
 
 //make days list disapear if task button is hit again or day is selected
 
@@ -87,17 +87,6 @@ noteBtn.addEventListener('click', noteBtnClk);
 //create type list for noteBtn
 var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
 var count = 0;
-
-// if (count = 0) {}
-// for (var i = 0; i < 5; i++) {
-//     var type = document.createElement('p');
-//     type.setAttribute("id", `type${i}`);
-//     type.setAttribute("class", 'type');
-//     type.innerHTML = noteType[i];
-//     type.addEventListener('click', addNote);
-//     type.addEventListener('click', hideNoteList);
-//     typeList.appendChild(type);
-// }
 
 
 //create element and check off button and add to task list
@@ -131,11 +120,11 @@ function addNote() {
 }
 
 //add click and enter key events to submit button
-window.addEventListener('keypress', function (e) {
-    if (e.keyCode === 13) {
-        addNote();
-    }
-});
+// window.addEventListener('keypress', function (e) {
+//     if (e.keyCode === 13) {
+//         addNote();
+//     }
+// });
 
 //make days list disapear if task button is hit again or day is selected
 
@@ -150,6 +139,46 @@ function noteBtnClk() {
 function hideNoteList() {
     typeList.classList.toggle("show2");
 }
+
+
+///***///PERSONAL GOALS SECTION////***/////
+
+const goalsDiv = document.getElementById('goalsDiv');
+const setGoalsDiv = document.getElementById('goalsDiv');
+const goalsInput = document.getElementById('goalsInput');
+const goalsBtn = document.getElementById('goalsBtn');
+const goalsList = document.getElementById('goalsList');
+
+goalsBtn.addEventListener('click', setGoal);
+
+
+function setGoal() {
+    if (goalsInput.value == '') {
+        return null
+    }
+    //daysList.classList.toggle("show");   
+    var count = 0;
+    count++;
+    var goal = document.createElement('li'); //create li element
+    goal.setAttribute("class", "goal");
+    goal.setAttribute("id", `goal${count}`);
+    goalsList.appendChild(goal);
+
+    var goalValue = goalsInput.value; //create variable = input value
+    goal.innerHTML = goalValue; //set li html = input value
+
+    goalsInput.value = ''; //set input field blank after item submitted
+
+    const setGoalsBtn = document.createElement('button');
+    setGoalsBtn.setAttribute("id", `goalBtn${count}`);
+    setGoalsBtn.innerHTML = "X";
+    setGoalsBtn.addEventListener('click', function (e) {
+        goalsList.removeChild(goal);
+    });
+
+    goal.appendChild(setGoalsBtn);
+}
+
 
 
 ///***///EDIT LABELS SECTION////***/////

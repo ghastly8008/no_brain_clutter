@@ -8,33 +8,53 @@
     <div class="headerWrapper">
         <div>
             <h1 style="margin-bottom: 17px">Page For I </h1>
-            <p id="introText" style="margin:0px">For you to keep track of, and work on you, and <strong>no one else</strong></p>
+            <p id="introText" style="margin:0px">For you to keep track of, and work on you, and <strong>no one
+                    else</strong></p>
         </div>
         <div class="headerSubmit">
-        <h2 id="quickFeedback">Quick Feedback</h2>
+            <h2 id="quickFeedback">Quick Feedback</h2>
             <div class="proud">
-                <p class="proudText">What is something you just did or just happened that you <strong>are</strong> proud of?</p>
+                <p class="proudText">What is something you just did or just happened that you <strong>are</strong> proud
+                    of?</p>
                 <textarea id="proudInput" class="pdInput" value="Proud Of"></textarea>
-                <button type="button" class="proudBtns">: )</button>
+                <button type="button" class="proudBtns">Enter</button>
 
             </div>
             <div class="notProud">
-                <p class="proudText">What is something you just did or just happened that you are <strong>not</strong> proud of?</p>
+                <p class="proudText">What is something you just did or just happened that you are <strong>not</strong>
+                    proud of?</p>
                 <textarea id="notProudInput" class="pdInput" value="Not Proud Of"></textarea>
-                <button type="button" class="proudBtns">: (</button>
+                <button type="button" class="proudBtns">Enter</button>
 
             </div>
         </div>
     </div>
     <div class="wrapper">
         <div id="taskDiv">
-            <h2>Stuff & Things</h2>
+            <h2>Things To-Do</h2>
             <textarea id=taskInput value="Enter"></textarea>
             <div id="taskDropDown" class="dropdown">
                 <button type="button" class="taskBtn" id="taskBtn">Add to
                     <div id="days" class="days"></div>
                 </button>
                 <ul id="taskList"></ul>
+            </div>
+        </div>
+        <div class=projGoalsDiv>
+            <div class="goalsDiv">
+                <h2>Personal Goals</h2>
+                <textarea id=goalsInput value="Enter"></textarea>
+                <div id="goalsDiv" class="dropdown_Goals">
+                    <button type="button" class="goalsBtn" id="goalsBtn">Set goal
+                        <div id="goals" class="goals"></div>
+                    </button>
+                    <ul id="goalsList"></ul>
+                </div>
+            </div>
+            <div class="projectsDiv">
+                <h2>Projects</h2>
+                <textarea id=bigTaskInput value="Enter"></textarea>
+
             </div>
         </div>
         <div id="noteDiv">
@@ -46,25 +66,13 @@
                 <button type="button" class="editLblButtons" id="updateLabelBtn">Update</button>
                 <button type="button" class="editLblButtons" id="cancelLableBtn">Default</button>
             </div>
-            <h2>Thoughts & Notes</h2>
+            <h2>Notes</h2>
             <textarea id=noteInput value="Enter"></textarea>
             <div class="noteDropDown" id="noteDD">
                 <button type="button" class="noteBtn" id="noteBtn">Label
                     <div id="notes" class="notes">
                 </button>
                 <ul id="noteList"></ul>
-            </div>
-        </div>
-        <div class=projGoalsDiv>
-            <div class="projectsDiv">
-                <h2>Big Tasks (Projects?)</h2>
-                <textarea id=bigTaskInput value="Enter"></textarea>
-
-            </div>
-            <div class="goalsDiv">
-                <h2>Personal Goals</h2>
-                <textarea id=goalsInput value="Enter"></textarea>
-
             </div>
         </div>
     </div>

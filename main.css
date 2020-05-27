@@ -25,15 +25,15 @@ h1 {
     padding: 4%;
     grid-gap: 1em;
     font-size: 17px;
-    background-color: rgb(234, 232, 232);
+    background-color: rgb(240, 239, 239);
 }
 
 #quickFeedback {
     grid-column: 1/3;
     margin-bottom: 0%;
-    margin-left: 2%;
     margin-top: 0%;
     color: rgb(19, 81, 19);
+    font-size: 30px;
 }
 
 .proudText {
@@ -42,8 +42,8 @@ h1 {
 
 .proudBtns {
     width: auto;
-    border-radius: 50%;
-    padding: 10px;
+    border-radius: 20%;
+    padding: 7px;
 }
 
 .pdInput {
@@ -152,7 +152,7 @@ input {
     display: block;
 }
 
-/*  Notes Section */
+/*  projGoals Section */
 
 .projectsDiv{
     /* border: 1px dashed grey; */
@@ -173,6 +173,17 @@ input {
 .type:hover {
     background-color:rgb(212, 211, 211);
   }
+
+#goalsDiv
+{
+    display: inline;
+}
+
+.goal {
+    padding: 10px;
+    display: block;
+    width: 300px;
+}
 
 /* Edit Labels Section */
 
