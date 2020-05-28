@@ -1,34 +1,53 @@
 
-h1 {
-    color:rgb(0, 174, 255);
-    font-size: 45px;
+/* GLOBAL */
+
+button {
+    width:100px;
+    margin: 10px;
+    display: inline;
+} 
+
+.input {
+    outline: none;
 }
-.headerWrapper {
+
+
+/* HEADER */
+
+#header__wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin-top: 40px;
     margin-left: 5%;
+    grid-gap: 2em;
 }
 
-#introText {
+#header__title {
+    margin-bottom: 17px;
+    color: rgb(0, 174, 255);
+    font-size: 45px;
+}
+
+#header__subText {
     color:rgb(94, 94, 94);
     font-size: 25px;
-    align-self: start;
 }
 
-.headerSubmit {
+/* HEADER__QUICKFEEDBACK */
+
+#header__quickFeedback {
     border-radius: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column: 2/3;
-    margin: 2%;
+    margin: 4%;
     padding: 4%;
     grid-gap: 1em;
     font-size: 17px;
     background-color: rgb(240, 239, 239);
 }
 
-#quickFeedback {
+#header__quickFeedback__title {
     grid-column: 1/3;
     margin-bottom: 0%;
     margin-top: 0%;
@@ -36,23 +55,23 @@ h1 {
     font-size: 30px;
 }
 
-.proudText {
+.header__quickFeedback__div {
+    padding: 1%;
+}
+
+.header__quickFeedback__text {
     margin-top: 0%;
 }
 
-.proudBtns {
+.header__quickFeedback__btn {
     width: auto;
-    border-radius: 20%;
-    padding: 7px;
+    border-radius: 25%;
+    padding: 9px;
 }
 
-.pdInput {
+/* BODY GLOBAL */
 
-    height: 30px;
-
-}
-
-.wrapper {
+#body__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 4%;
@@ -60,43 +79,17 @@ h1 {
 
 }
 
-
-button {
-    width:100px;
-    margin: 10px;
-    display: inline;
+.body__title {
+    color: rgb(94, 2, 94);
 }
 
+.body__input:focus {
+    border: 2px solid #888;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
 
-input {
-    margin-top: 0px;
-   }   
-
-
-.taskListItems {
-    padding: 10px;
-    display: block;
-    width: 300px;
 }
 
-.noteListItems {
-    padding: 10px;
-    display: block;
-    width: 300px;
-}
-
-
-.dropdown {
-    display: inline;
-}
-
-.noteDropDown {
-    display: inline;
-}
-
-/*  Task Section */
-
-.days {
+.body__dropDown {
     display: none;
     position: absolute;
     background-color:rgb(234, 232, 232);
@@ -109,20 +102,55 @@ input {
     margin-top: 15px;
   }
 
-.days p {
+
+.body__item {
+    padding: 10px;
+    display: block;
+    width: 300px;
+}
+
+.dropdown {
+    display: inline;
+}
+
+.body__DD__item {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
 
-.day:hover {
+
+.body__DD__item:hover {
     background-color:rgb(212, 211, 211);
   }
 
 .show {display: block;}
 
-/*  Notes Section */
+.body__button--done {
+    background-color: rgb(199, 227, 228);
+}
+
+/*  TODO SECTION */
+
+    /* !THERE IS NO SPECIAL DEISGN HERE SO OBV IT IS EMPTY! */
+
+
+
+
+
+/*  NOTES SECTION */
+
+.noteDropDown {
+    display: inline;
+}
+
+
+.noteListItems {
+    padding: 10px;
+    display: block;
+    width: 300px;
+}
 
 .notes {
     display: none;
@@ -187,7 +215,7 @@ input {
 
 /* Edit Labels Section */
 
-.editLabels {
+.body__editLabel--note {
     display: none;
 }
 
@@ -195,13 +223,7 @@ input {
     display: block;
 }
 
-.editLblButtons {
-    width: 80px;
-    border-radius: 8px;
-    font-size: 9px;
-}
-
-#editLabelBtn {
+#editLabelLink--note {
 border: 2px solid grey;
 border-radius: 8px;
 }

@@ -1,55 +1,56 @@
 
-///***///TASK LIST SECTION////***/////
+///***///TODO LIST SECTION////***/////
 
 //get all elements from taskDiv
-const taskInput = document.getElementById('taskInput');
-const taskDropDown = document.getElementById('taskDropDown');
-const taskBtn = document.getElementById('taskBtn');
-const daysList = document.getElementById('days');
-const taskList = document.getElementById('taskList');
+const todoInput = document.getElementById('body__input--todo');
+const todoBtn = document.getElementById('body__button--todo');
+const todoDDList = document.getElementById('body__dropDown--todo');
+const todoList = document.getElementById('body__list--todo');
 
 
 //have days list appear on task button click
-taskBtn.addEventListener('click', taskBtnClk);
+todoBtn.addEventListener('click', todoBtnClk);
 
 //create days of week elements and add all to days list
 var dayofWk = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 for (var i = 0; i < 7; i++) {
-    var day = document.createElement('p');
-    day.setAttribute("id", `day${i}`);
-    day.setAttribute("class", 'day');
-    day.innerHTML = dayofWk[i];
-    day.addEventListener('click', addTask);
-    day.addEventListener('click', hideDaysList);
-    daysList.appendChild(day);
+    var todoItem = document.createElement('p');
+    todoItem.setAttribute("class", 'body__DD__item');
+    todoItem.setAttribute("id", `body__DD__item--todo${i}`);
+    // todoItem.setAttribute("class", 'todoItem');
+    todoItem.innerHTML = dayofWk[i];
+    todoItem.addEventListener('click', addTask);
+    todoItem.addEventListener('click', hideDaysList);
+    todoDDList.appendChild(todoItem);
 }
 
 //create element and check off button and add to task list
 function addTask() {
-    if (taskInput.value == '') {
+    if (todoInput.value == '') {
         return null
     }
     //daysList.classList.toggle("show");   
     var count = 0;
     count++;
     var itemEle = document.createElement('li'); //create li element
-    itemEle.setAttribute("class", "taskListItems");
-    itemEle.setAttribute("id", `task${count}`);
-    taskList.appendChild(itemEle);
+    itemEle.setAttribute("class", "body__item");
+    itemEle.setAttribute("id", `body__item--todo${count}`);
+    todoList.appendChild(itemEle);
 
-    var itemValue = taskInput.value; //create variable = input value
+    var itemValue = todoInput.value; //create variable = input value
     itemEle.innerHTML = itemValue; //set li html = input value
 
-    taskInput.value = ''; //set input field blank after item submitted
+    todoInput.value = ''; //set input field blank after item submitted
 
-    const itemBtn = document.createElement('button');
-    itemBtn.setAttribute("id", `taskBtn${count}`);
-    itemBtn.innerHTML = "done";
-    itemBtn.addEventListener('click', function (e) {
-        taskList.removeChild(itemEle);
+    const todoDoneBtn = document.createElement('button');
+    todoDoneBtn.setAttribute("class", `body__button--done`);
+    todoDoneBtn.setAttribute("id", `body__button--done--todo`);
+    todoDoneBtn.innerHTML = "done";
+    todoDoneBtn.addEventListener('click', function (e) {
+        todoList.removeChild(itemEle);
     });
 
-    itemEle.appendChild(itemBtn);
+    itemEle.appendChild(todoDoneBtn);
 }
 
 //add click and enter key events to submit button
@@ -59,27 +60,25 @@ function addTask() {
 //     }
 // });
 
+
 //make days list disapear if task button is hit again or day is selected
 
 function hideDaysList() {
-    daysList.classList.toggle("show");
+    todoDDList.classList.toggle("show");
 }
 
-function taskBtnClk() {
-    if (taskInput.value == '') {
+function todoBtnClk() {
+    if (todoInput.value == '') {
         return null
     }
-    daysList.classList.toggle("show");
+    todoDDList.classList.toggle("show");
 }
 
 ///***///NOTES SECTION////***/////
 
-//create note input field //check
-const noteDiv = document.getElementById('noteDiv');
-const noteInput = document.getElementById('noteInput');
-const noteDD = document.getElementById('noteDropDown');
-const noteBtn = document.getElementById('noteBtn');
-const typeList = document.getElementById('notes');
+const noteInput = document.getElementById('body__input--note');
+const noteBtn = document.getElementById('body__button--note');
+const noteDDList = document.getElementById('body__dropDown--note');
 const noteList = document.getElementById('noteList');
 
 noteBtn.addEventListener('click', noteBtnClk);
@@ -98,8 +97,8 @@ function addNote() {
     var count2 = 0;
     count2++;
     var note = document.createElement('li'); //create li element
-    note.setAttribute("class", "noteListItems");
-    note.setAttribute("id", `note${count2}`); //set id of item element   
+    note.setAttribute("class", "body__item");
+    note.setAttribute("id", `body__item--note${count2}`); //set id of item element   
 
     var noteValue = noteInput.value; //create variable = input value
     note.innerHTML = noteValue; //set li html = input value
@@ -108,14 +107,15 @@ function addNote() {
 
     noteInput.value = ''; //set input field blank after item submitted
 
-    const noteBtn = document.createElement('button');
-    noteBtn.setAttribute("id", `noteBtn${count2}`);
-    noteBtn.innerHTML = "done";
-    noteBtn.addEventListener('click', function (e) {
+    const doneNoteBtn = document.createElement('button');
+    doneNoteBtn.setAttribute("class", `body__button--done`);
+    doneNoteBtn.setAttribute("id", `body__button--done--note`);
+    doneNoteBtn.innerHTML = "done";
+    doneNoteBtn.addEventListener('click', function (e) {
         noteList.removeChild(note);
     });
 
-    note.appendChild(noteBtn);
+    note.appendChild(doneNoteBtn);
 
 }
 
@@ -133,11 +133,11 @@ function noteBtnClk() {
     if (noteInput.value == '') {
         return null
     }
-    typeList.classList.toggle("show2");
+    noteDDList.classList.toggle("show2");
 }
 
 function hideNoteList() {
-    typeList.classList.toggle("show2");
+    noteDDList.classList.toggle("show2");
 }
 
 
@@ -183,91 +183,91 @@ function setGoal() {
 
 ///***///EDIT LABELS SECTION////***/////
 
-const editLabelsSection = document.getElementById('editLabels');
+const editLabelSection = document.getElementById('note__editLabel__div');
 
 const editLabelBtn = document.createElement('p');
 editLabelBtn.innerHTML = " Edit Labels";
-editLabelBtn.setAttribute("id", 'editLabelBtn');
-editLabelBtn.setAttribute("class", 'type');
-typeList.appendChild(editLabelBtn);
+editLabelBtn.setAttribute("id", 'editLabelLink--note');
+editLabelBtn.setAttribute("class", 'body__DD__item');
+noteDDList.appendChild(editLabelBtn);
 editLabelBtn.addEventListener('click', genLabelEdit);
 
 //function that displays editLabelsSection
 
 function genLabelEdit() {
-    editLabelsSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show3");
 }
 
 //create edit labels section with orginal "noteType" list
 
-labelsList = document.getElementById('labelsList');
+labelList = document.getElementById('label__list--note');
 
 for (var i = 0; i < (noteType.length); i++) {
     const labelInput = document.createElement('input');
     labelInput.setAttribute("id", `noteType${i}`)
     labelInput.value = noteType[i];
-    labelsList.appendChild(labelInput);
+    labelList.appendChild(labelInput);
 }
 
 //add label button feature
-var ul = document.getElementById('labelsList');
-const addLabelBtn = document.getElementById("addLabelBtn");
+var ul = document.getElementById('label__list--note');
+const addLabelBtn = document.getElementById("button__editLabel__add--note");
 
 addLabelBtn.addEventListener('click', function (e) {
     const newField = document.createElement('input');
     newField.setAttribute("id", `noteType${ul.childNodes.length}`)
-    labelsList.appendChild(newField);
+    labelList.appendChild(newField);
 });
 
 //return list to previous state and cancel when you hit cancel
 
-const cancelLabelBtn = document.getElementById('cancelLableBtn');
+const cancelLabelBtn = document.getElementById('button_editLabel__default--note');
 cancelLabelBtn.addEventListener('click', function (e) {
-    editLabelsSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show3");
 });
 
 cancelLabelBtn.addEventListener('click', returnToInitialState);
 
 function returnToInitialState(){
-    while (labelsList.firstChild) {
-        labelsList.removeChild(labelsList.lastChild);
+    while (labelList.firstChild) {
+        labelList.removeChild(labelList.lastChild);
     }
     for (var i = 0; i < (noteType.length); i++) {
         const labelInput = document.createElement('input');
         labelInput.setAttribute("id", `noteType${i}`)
         labelInput.value = noteType[i];
-        labelsList.appendChild(labelInput);
+        labelList.appendChild(labelInput);
     }
 }
 
 
 //add event to populate note list on label button click
-const labelBtn = document.getElementById('noteBtn');
+const labelBtn = document.getElementById('body__button--note');
 labelBtn.addEventListener('click', updateNoteTypeLog);
 
 
 //remove label button feature
 
-const removeLabelBtn = document.getElementById("removeLabelBtn");
+const removeLabelBtn = document.getElementById("button__editLabel__remove--note");
 
 removeLabelBtn.addEventListener('click', function (e) {
-    let menu = labelsList;
+    let menu = labelList;
     menu.removeChild(menu.lastElementChild);
 });
 
 //update button feature which updates noteType elements
 
-const updateLabelBtn = document.getElementById("updateLabelBtn");
+const updateLabelBtn = document.getElementById("button_editLabel__update--note");
 updateLabelBtn.addEventListener('click', updateNoteType);
 updateLabelBtn.addEventListener('click', updateNoteTypeLog);
 
 function updateNoteType() {
-    var ul = document.getElementById('labelsList');
+    var ul = document.getElementById('label__list--note');
     var item = ul.getElementsByTagName("li");
     for (var i = 0; i < item.length; i++) {
         noteType.push(item[i]);
     }
-    editLabelsSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show3");
 }
 
 //create new array out of items in input fields in order to repopuate list with
@@ -275,8 +275,8 @@ function updateNoteType() {
 var updNoteType = [];
 function updateNoteTypeLog() {
     updNoteType = [];
-    while (typeList.lastChild.id !== 'editLabelBtn') {
-        typeList.removeChild(typeList.lastChild);
+    while (noteDDList.lastChild.id !== 'editLabelLink--note') {
+        noteDDList.removeChild(noteDDList.lastChild);
     }
     for (var i = 0; i < ul.childNodes.length; i++) {
         var test = document.getElementById(`noteType${i}`);
@@ -284,12 +284,12 @@ function updateNoteTypeLog() {
     }
     for (var i = 0; i < ul.childNodes.length; i++) {
         var type = document.createElement('p');
-        type.setAttribute("id", `type${i}`);
-        type.setAttribute("class", 'type');
+        type.setAttribute("id", `body__DD__item--note${i}`);
+        type.setAttribute("class", 'body__DD__item');
         type.innerHTML = updNoteType[i];
         type.addEventListener('click', addNote);
         type.addEventListener('click', hideNoteList);
-        typeList.appendChild(type);
+        noteDDList.appendChild(type);
     }
 }
 

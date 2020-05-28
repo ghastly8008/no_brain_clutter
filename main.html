@@ -4,77 +4,86 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
-<body id="body">
-    <div class="headerWrapper">
+
+<body>
+    <div id="header__wrapper">
         <div>
-            <h1 style="margin-bottom: 17px">Page For I </h1>
-            <p id="introText" style="margin:0px">For you to keep track of, and work on you, and <strong>no one
-                    else</strong></p>
+            <h1 id="header__title">Page For I </h1>
+            <p id="header__subText">No connections. No integrations. Just for you to keep track of, and work on you, and
+                <strong>no one
+                    else.</strong></p>
         </div>
-        <div class="headerSubmit">
-            <h2 id="quickFeedback">Quick Feedback</h2>
-            <div class="proud">
-                <p class="proudText">What is something you just did or just happened that you <strong>are</strong> proud
+        <div id="header__quickFeedback">
+            <h2 id="header__quickFeedback__title">Quick Feedback</h2>
+            <div class="header__quickFeedback__div" id="header__proudDiv">
+                <p class="header__quickFeedback__text">What is something you just did or just happened that you
+                    <strong>are</strong> proud
                     of?</p>
-                <textarea id="proudInput" class="pdInput" value="Proud Of"></textarea>
-                <button type="button" class="proudBtns">Enter</button>
+                <textarea class="input header__input" id="input--proud"></textarea>
+                <button type="button" class="header__quickFeedback__btn">Enter</button>
 
             </div>
-            <div class="notProud">
-                <p class="proudText">What is something you just did or just happened that you are <strong>not</strong>
+            <div class="header__quickFeedback__div" id="header__notProudDiv">
+                <p class="header__quickFeedback__text">What is something you just did or just happened that you are
+                    <strong>not</strong>
                     proud of?</p>
-                <textarea id="notProudInput" class="pdInput" value="Not Proud Of"></textarea>
-                <button type="button" class="proudBtns">Enter</button>
+                <textarea class="input header__input" id="input--notProud"></textarea>
+                <button type="button" class="header__quickFeedback__btn">Enter</button>
 
             </div>
         </div>
     </div>
-    <div class="wrapper">
-        <div id="taskDiv">
-            <h2>Things To-Do</h2>
-            <textarea id=taskInput value="Enter"></textarea>
-            <div id="taskDropDown" class="dropdown">
-                <button type="button" class="taskBtn" id="taskBtn">Add to
-                    <div id="days" class="days"></div>
-                </button>
-                <ul id="taskList"></ul>
-            </div>
+    <div id="body__wrapper">
+        <!-- THINGS TO-DO SECTION -->
+        <div id="body__div--todo">
+            <h2 class="body__title" id="body__title--todo">Things To-Do</h2>
+            <textarea class="input body__input" id=body__input--todo></textarea>
+            <button type="button" class="body__button" id="body__button--todo">Add to
+                <div class="body__dropDown" id="body__dropDown--todo"></div>
+            </button>
+            <ul class="body__list" id="body__list--todo"></ul>
         </div>
+        <!-- END THINGS TO-DO SECTION -->
+        <!-- PROJECTS + GOALS SECTION -->
         <div class=projGoalsDiv>
             <div class="goalsDiv">
-                <h2>Personal Goals</h2>
-                <textarea id=goalsInput value="Enter"></textarea>
-                <div id="goalsDiv" class="dropdown_Goals">
-                    <button type="button" class="goalsBtn" id="goalsBtn">Set goal
-                        <div id="goals" class="goals"></div>
-                    </button>
+                <h2 class="body__title" id="body__title--goals">Personal Goals</h2>
+                <textarea class="input body__input" id=goalsInput></textarea>
+                <div id="setGoalsDiv" class="dropdown_Goals">
+                    <button type="button" class="goalsBtn" id="goalsBtn">Set goal</button>
                     <ul id="goalsList"></ul>
                 </div>
             </div>
             <div class="projectsDiv">
-                <h2>Projects</h2>
-                <textarea id=bigTaskInput value="Enter"></textarea>
+                <h2 class="body__title" id="body__title--projects">Projects</h2>
+                <textarea class="input body__input" id=bigTaskInput value="Enter"></textarea>
 
             </div>
         </div>
-        <div id="noteDiv">
-            <div id="editLabels" class="editLabels">
-                <h2>Edit Labels</h2>
-                <ul id='labelsList'></ul>
-                <button type="button" class="editLblButtons" id="addLabelBtn">Add</button>
-                <button type="button" class="editLblButtons" id="removeLabelBtn">Remove</button>
-                <button type="button" class="editLblButtons" id="updateLabelBtn">Update</button>
-                <button type="button" class="editLblButtons" id="cancelLableBtn">Default</button>
+        <!-- NOTE SECTION -->
+        <div id="body__div--note">
+            <!-- start edit labels section -->
+            <div class="body__editLabel--note" id="note__editLabel__div">
+                <h2 class="body__title" id="body__title--note--editLabel">Edit Labels</h2>
+                <ul class="label__list" id="label__list--note"></ul>
+                <button type="button" class="body__button body__button__editLabels"
+                    id="button__editLabel__add--note">Add</button>
+                <button type="button" class="body__button body__button__editLabels"
+                    id="button__editLabel__remove--note">Remove</button>
+                <button type="button" class="body__button body__button__editLabels"
+                    id="button_editLabel__update--note">Update</button>
+                <button type="button" class="body__button body__button__editLabels"
+                    id="button_editLabel__default--note">Default</button>
             </div>
-            <h2>Notes</h2>
-            <textarea id=noteInput value="Enter"></textarea>
-            <div class="noteDropDown" id="noteDD">
-                <button type="button" class="noteBtn" id="noteBtn">Label
-                    <div id="notes" class="notes">
-                </button>
-                <ul id="noteList"></ul>
-            </div>
+            <!-- end edit labels section -->
+            <h2 class="body__title" id="body__title--note">Notes</h2>
+            <textarea class="input body__input" id="body__input--note" value="Enter"></textarea>
+            <button type="button" class="body__button" id="body__button--note">Label
+                <div class="body__dropDown" id="body__dropDown--note">
+            </button>
+            <ul id="noteList"></ul>
         </div>
+        <!-- END NOTE SECTION -->
     </div>
 </body>
 
