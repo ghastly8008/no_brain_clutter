@@ -4,7 +4,7 @@
 //get all elements from taskDiv
 const todoInput = document.getElementById('body__input--todo');
 const todoBtn = document.getElementById('body__button--todo');
-const todoDDList = document.getElementById('body__dropDown--todo');
+const todoDDList = document.getElementById('body__DD--todo');
 const todoList = document.getElementById('body__list--todo');
 
 
@@ -78,7 +78,7 @@ function todoBtnClk() {
 
 const noteInput = document.getElementById('body__input--note');
 const noteBtn = document.getElementById('body__button--note');
-const noteDDList = document.getElementById('body__dropDown--note');
+const noteDDList = document.getElementById('body__DD--note');
 const noteList = document.getElementById('noteList');
 
 noteBtn.addEventListener('click', noteBtnClk);
@@ -119,35 +119,25 @@ function addNote() {
 
 }
 
-//add click and enter key events to submit button
-// window.addEventListener('keypress', function (e) {
-//     if (e.keyCode === 13) {
-//         addNote();
-//     }
-// });
-
-//make days list disapear if task button is hit again or day is selected
-
 //function to show and hide note list when noteBtn is clicked
 function noteBtnClk() {
     if (noteInput.value == '') {
         return null
     }
-    noteDDList.classList.toggle("show2");
+    noteDDList.classList.toggle("show");
 }
 
 function hideNoteList() {
-    noteDDList.classList.toggle("show2");
+    noteDDList.classList.toggle("show");
 }
 
 
 ///***///PERSONAL GOALS SECTION////***/////
 
-const goalsDiv = document.getElementById('goalsDiv');
-const setGoalsDiv = document.getElementById('goalsDiv');
-const goalsInput = document.getElementById('goalsInput');
-const goalsBtn = document.getElementById('goalsBtn');
-const goalsList = document.getElementById('goalsList');
+const goalsDiv = document.getElementById('body__div--goal');
+const goalsInput = document.getElementById('body__input--goal');
+const goalsBtn = document.getElementById('body__button--goal');
+const goalsList = document.getElementById('body__list--goal');
 
 goalsBtn.addEventListener('click', setGoal);
 
@@ -160,8 +150,8 @@ function setGoal() {
     var count = 0;
     count++;
     var goal = document.createElement('li'); //create li element
-    goal.setAttribute("class", "goal");
-    goal.setAttribute("id", `goal${count}`);
+    goal.setAttribute("class", "body__item");
+    goal.setAttribute("id", `body__item--goal${count}`);
     goalsList.appendChild(goal);
 
     var goalValue = goalsInput.value; //create variable = input value
@@ -170,7 +160,8 @@ function setGoal() {
     goalsInput.value = ''; //set input field blank after item submitted
 
     const setGoalsBtn = document.createElement('button');
-    setGoalsBtn.setAttribute("id", `goalBtn${count}`);
+    setGoalsBtn.setAttribute("class", `body__button--done`);
+    setGoalsBtn.setAttribute("id", `body__button--done--goal`);
     setGoalsBtn.innerHTML = "X";
     setGoalsBtn.addEventListener('click', function (e) {
         goalsList.removeChild(goal);
@@ -195,7 +186,7 @@ editLabelBtn.addEventListener('click', genLabelEdit);
 //function that displays editLabelsSection
 
 function genLabelEdit() {
-    editLabelSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show");
 }
 
 //create edit labels section with orginal "noteType" list
@@ -223,7 +214,7 @@ addLabelBtn.addEventListener('click', function (e) {
 
 const cancelLabelBtn = document.getElementById('button_editLabel__default--note');
 cancelLabelBtn.addEventListener('click', function (e) {
-    editLabelSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show");
 });
 
 cancelLabelBtn.addEventListener('click', returnToInitialState);
@@ -267,7 +258,7 @@ function updateNoteType() {
     for (var i = 0; i < item.length; i++) {
         noteType.push(item[i]);
     }
-    editLabelSection.classList.toggle("show3");
+    editLabelSection.classList.toggle("show");
 }
 
 //create new array out of items in input fields in order to repopuate list with
