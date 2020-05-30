@@ -1,104 +1,129 @@
 
 ///***///TODO LIST SECTION////***/////
 
-//get all elements from taskDiv
-const todoInput = document.getElementById('body__input--todo');
-const todoBtn = document.getElementById('body__button--todo');
-const todoDDList = document.getElementById('body__DD--todo');
-const todoList = document.getElementById('body__list--todo');
+// Get elements from todo section
+const TODO_INPUT = document.getElementById('body__input--todo');
+const TODO_BTN = document.getElementById('body__btn--todo');
+const TODO_DD_LIST = document.getElementById('body__DD--todo');
+const TODO_LIST = document.getElementById('body__list--todo');
 
+//Reveal drop down list on click of todo button
+TODO_BTN.addEventListener('click', showTodoDDList);
 
-//have days list appear on task button click
-todoBtn.addEventListener('click', todoBtnClk);
+function showTodoDDList() {
+    if (TODO_INPUT.value == '') {
+        return null
+    }
+    TODO_DD_LIST.classList.toggle("show");
+}
 
-//create days of week elements and add all to days list
-var dayofWk = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-for (var i = 0; i < 7; i++) {
-    var todoItem = document.createElement('p');
-    todoItem.setAttribute("class", 'body__DD__item');
-    todoItem.setAttribute("id", `body__DD__item--todo${i}`);
-    // todoItem.setAttribute("class", 'todoItem');
-    todoItem.innerHTML = dayofWk[i];
-    todoItem.addEventListener('click', addTask);
-    todoItem.addEventListener('click', hideDaysList);
-    todoDDList.appendChild(todoItem);
+//create todo drop down list elements
+var todoDDList = ['No Set Day', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+for (var i = 0; i < todoDDList.length; i++) {
+    var todoDDElement = document.createElement('p');
+    todoDDElement.setAttribute("class", 'body__DD__element');
+    todoDDElement.setAttribute("id", `body__DD__element--todo${i}`);
+    todoDDElement.innerHTML = todoDDList[i];
+    todoDDElement.addEventListener('click', addTodoItemToList);
+    todoDDElement.addEventListener('click', hideTodoDDList);
+    TODO_DD_LIST.appendChild(todoDDElement);
+}
+
+function hideTodoDDList() {
+    TODO_DD_LIST.classList.toggle("show");
 }
 
 //create element and check off button and add to task list
-function addTask() {
-    if (todoInput.value == '') {
-        return null
-    }
-    //daysList.classList.toggle("show");   
-    var count = 0;
-    count++;
-    var itemEle = document.createElement('li'); //create li element
-    itemEle.setAttribute("class", "body__item");
-    itemEle.setAttribute("id", `body__item--todo${count}`);
-    todoList.appendChild(itemEle);
-
-    var itemValue = todoInput.value; //create variable = input value
-    itemEle.innerHTML = itemValue; //set li html = input value
-
-    todoInput.value = ''; //set input field blank after item submitted
-
-    const todoDoneBtn = document.createElement('button');
-    todoDoneBtn.setAttribute("class", `body__button--done`);
-    todoDoneBtn.setAttribute("id", `body__button--done--todo`);
-    todoDoneBtn.innerHTML = "done";
-    todoDoneBtn.addEventListener('click', function (e) {
-        todoList.removeChild(itemEle);
-    });
-
-    itemEle.appendChild(todoDoneBtn);
-}
-
-//add click and enter key events to submit button
-// window.addEventListener('keypress', function (e) {
-//     if (e.keyCode === 13) {
-//         addTask();
+// function addTodoItemToList() {
+//     if (TODO_INPUT.value == '') {
+//         return null
 //     }
-// });
+//     var count = 0;
+//     count++;
+//     var todoItem = document.createElement('li'); //create li element
+//     todoItem.setAttribute("class", "body__item");
+//     todoItem.setAttribute("id", `body__item--todo${count}`);
+//     TODO_LIST.appendChild(todoItem);
+
+//     var todoItemValue = TODO_INPUT.value; //create variable = input value
+//     todoItem.innerHTML = todoItemValue; //set li html = input value
+
+//     TODO_INPUT.value = ''; //set input field blank after item submitted
+
+//     createDoneBtnForItem();
+// }
+
+var todoItem;
+var todoDoneBtn;
+var count = 0;
 
 
-//make days list disapear if task button is hit again or day is selected
-
-function hideDaysList() {
-    todoDDList.classList.toggle("show");
+function addTodoItemToList() {
+    createTodoItem();
+    createDoneBtnForItem();
+    todoItem.appendChild(todoDoneBtn)
+    TODO_LIST.appendChild(todoItem);
+    TODO_INPUT.value = '';
+    // console.log(todoItem.parentNode);
+    // console.log(todoDoneBtn.parentNode);
 }
 
-function todoBtnClk() {
-    if (todoInput.value == '') {
-        return null
-    }
-    todoDDList.classList.toggle("show");
+var count = 0;
+
+function createTodoItem() {
+    if (TODO_INPUT.value == '') return null;
+    count++;
+    todoItem = document.createElement('li');
+    todoItem.setAttribute("id", `body__item${count}`);
+    todoItem.setAttribute("class", "body__item");
+    todoItem.innerHTML = TODO_INPUT.value;
+    return todoItem;
 }
+
+
+function createDoneBtnForItem() {
+    todoDoneBtn = document.createElement('button');
+    todoDoneBtn.setAttribute("class", `body__btn--done`);
+    todoDoneBtn.innerHTML = "done";
+    todoDoneBtn.addEventListener('click', removeItemWithDoneBtn)
+    return todoDoneBtn;
+}
+
+function removeItemWithDoneBtn () {
+    var li = this.parentNode;
+    removeElementByID(li.id);
+}
+
+function removeElementByID(id) {
+    var elem = document.getElementById(id);
+    return removeElement(elem);
+}
+
+function removeElement(elem) {
+    return elem.parentNode.removeChild(elem);
+}
+
 
 ///***///NOTES SECTION////***/////
 
 const noteInput = document.getElementById('body__input--note');
-const noteBtn = document.getElementById('body__button--note');
+const noteBtn = document.getElementById('body__btn--note');
 const noteDDList = document.getElementById('body__DD--note');
-const noteList = document.getElementById('noteList');
+const noteList = document.getElementById('body__list--note');
 
 noteBtn.addEventListener('click', noteBtnClk);
 
 //create type list for noteBtn
 var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
-var count = 0;
 
 
 //create element and check off button and add to task list
 function addNote() {
-    if (noteInput.value == '') {
-        return null
-    }
-    //daysList.classList.toggle("show");   
-    var count2 = 0;
-    count2++;
+    if (noteInput.value == '') return null
+
     var note = document.createElement('li'); //create li element
     note.setAttribute("class", "body__item");
-    note.setAttribute("id", `body__item--note${count2}`); //set id of item element   
+    // note.setAttribute("id", `body__item--note`); //set id of item element   
 
     var noteValue = noteInput.value; //create variable = input value
     note.innerHTML = noteValue; //set li html = input value
@@ -108,8 +133,8 @@ function addNote() {
     noteInput.value = ''; //set input field blank after item submitted
 
     const doneNoteBtn = document.createElement('button');
-    doneNoteBtn.setAttribute("class", `body__button--done`);
-    doneNoteBtn.setAttribute("id", `body__button--done--note`);
+    doneNoteBtn.setAttribute("class", `body__btn--done`);
+    doneNoteBtn.setAttribute("id", `body__btn--done--note`);
     doneNoteBtn.innerHTML = "done";
     doneNoteBtn.addEventListener('click', function (e) {
         noteList.removeChild(note);
@@ -136,7 +161,7 @@ function hideNoteList() {
 
 const goalsDiv = document.getElementById('body__div--goal');
 const goalsInput = document.getElementById('body__input--goal');
-const goalsBtn = document.getElementById('body__button--goal');
+const goalsBtn = document.getElementById('body__btn--goal');
 const goalsList = document.getElementById('body__list--goal');
 
 goalsBtn.addEventListener('click', setGoal);
@@ -160,8 +185,8 @@ function setGoal() {
     goalsInput.value = ''; //set input field blank after item submitted
 
     const setGoalsBtn = document.createElement('button');
-    setGoalsBtn.setAttribute("class", `body__button--done`);
-    setGoalsBtn.setAttribute("id", `body__button--done--goal`);
+    setGoalsBtn.setAttribute("class", `body__btn--done`);
+    setGoalsBtn.setAttribute("id", `body__btn--done--goal`);
     setGoalsBtn.innerHTML = "X";
     setGoalsBtn.addEventListener('click', function (e) {
         goalsList.removeChild(goal);
@@ -179,7 +204,7 @@ const editLabelSection = document.getElementById('note__editLabel__div');
 const editLabelBtn = document.createElement('p');
 editLabelBtn.innerHTML = " Edit Labels";
 editLabelBtn.setAttribute("id", 'editLabelLink--note');
-editLabelBtn.setAttribute("class", 'body__DD__item');
+editLabelBtn.setAttribute("class", 'body__DD__element');
 noteDDList.appendChild(editLabelBtn);
 editLabelBtn.addEventListener('click', genLabelEdit);
 
@@ -219,7 +244,7 @@ cancelLabelBtn.addEventListener('click', function (e) {
 
 cancelLabelBtn.addEventListener('click', returnToInitialState);
 
-function returnToInitialState(){
+function returnToInitialState() {
     while (labelList.firstChild) {
         labelList.removeChild(labelList.lastChild);
     }
@@ -233,9 +258,8 @@ function returnToInitialState(){
 
 
 //add event to populate note list on label button click
-const labelBtn = document.getElementById('body__button--note');
+const labelBtn = document.getElementById('body__btn--note');
 labelBtn.addEventListener('click', updateNoteTypeLog);
-
 
 //remove label button feature
 
@@ -275,8 +299,8 @@ function updateNoteTypeLog() {
     }
     for (var i = 0; i < ul.childNodes.length; i++) {
         var type = document.createElement('p');
-        type.setAttribute("id", `body__DD__item--note${i}`);
-        type.setAttribute("class", 'body__DD__item');
+        type.setAttribute("id", `body__DD__element--note${i}`);
+        type.setAttribute("class", 'body__DD__element');
         type.innerHTML = updNoteType[i];
         type.addEventListener('click', addNote);
         type.addEventListener('click', hideNoteList);
