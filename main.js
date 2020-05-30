@@ -9,6 +9,7 @@ const TODO_LIST = document.getElementById('body__list--todo');
 
 //Reveal drop down list on click of todo button
 TODO_BTN.addEventListener('click', showTodoDDList);
+TODO_BTN.addEventListener('click', getBtnClicked);
 
 function showTodoDDList() {
     if (TODO_INPUT.value == '') {
@@ -33,52 +34,60 @@ function hideTodoDDList() {
     TODO_DD_LIST.classList.toggle("show");
 }
 
-//create element and check off button and add to task list
-// function addTodoItemToList() {
-//     if (TODO_INPUT.value == '') {
-//         return null
-//     }
-//     var count = 0;
-//     count++;
-//     var todoItem = document.createElement('li'); //create li element
-//     todoItem.setAttribute("class", "body__item");
-//     todoItem.setAttribute("id", `body__item--todo${count}`);
-//     TODO_LIST.appendChild(todoItem);
-
-//     var todoItemValue = TODO_INPUT.value; //create variable = input value
-//     todoItem.innerHTML = todoItemValue; //set li html = input value
-
-//     TODO_INPUT.value = ''; //set input field blank after item submitted
-
-//     createDoneBtnForItem();
-// }
-
-var todoItem;
-var todoDoneBtn;
-var count = 0;
-
-
 function addTodoItemToList() {
-    createTodoItem();
+    setBodyItem();
     createDoneBtnForItem();
-    todoItem.appendChild(todoDoneBtn)
-    TODO_LIST.appendChild(todoItem);
+    bodyItem.appendChild(todoDoneBtn)
+    TODO_LIST.appendChild(bodyItem);
     TODO_INPUT.value = '';
-    // console.log(todoItem.parentNode);
-    // console.log(todoDoneBtn.parentNode);
 }
+
+var btnID;
+
+function getBtnClicked(){
+    var btn = this;
+    btnID = btn.id;
+}
+
 
 var count = 0;
 
-function createTodoItem() {
-    if (TODO_INPUT.value == '') return null;
+function setBodyItem() {
+    // debugger;
+    // btnID = getBtnClicked();
+    // debugger;
+    console.log(btnID);
+    let currentNode = document.getElementById(btnID);
+    // let currentNode = btnClicked;
+    let inputNode = currentNode.previousElementSibling;
+    let input = inputNode.value;
+    if (input == '') return null;
+    createBodyItem();
+    bodyItem.innerHTML = input;
     count++;
-    todoItem = document.createElement('li');
-    todoItem.setAttribute("id", `body__item${count}`);
-    todoItem.setAttribute("class", "body__item");
-    todoItem.innerHTML = TODO_INPUT.value;
-    return todoItem;
+    bodyItem.setAttribute("id", `body__item${count}`);
+    return bodyItem;
 }
+
+
+//tetsing general item creation - just element
+function createBodyItem() {
+    bodyItem = document.createElement('li');
+    bodyItem.setAttribute("class", "body__item");
+    return bodyItem;
+}
+
+
+
+// function createBodyItem() {
+//     if (TODO_INPUT.value == '') return null;
+//     count++;
+//     todoItem = document.createElement('li');
+//     todoItem.setAttribute("id", `body__item${count}`);
+//     todoItem.setAttribute("class", "body__item");
+//     todoItem.innerHTML = TODO_INPUT.value;
+//     return todoItem;
+// }
 
 
 function createDoneBtnForItem() {
@@ -90,8 +99,10 @@ function createDoneBtnForItem() {
 }
 
 function removeItemWithDoneBtn () {
+    // debugger;
     var li = this.parentNode;
     removeElementByID(li.id);
+    // console.log(this);
 }
 
 function removeElementByID(id) {
