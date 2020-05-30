@@ -1,4 +1,89 @@
 
+///***///GENERAL////***/////
+
+//Find ID of button clicked 
+
+var btnID;
+function getBtnClicked(){
+    var btn = this;
+    btnID = btn.id;
+}
+
+//show drop down list
+
+function showDDList() {
+    var btn = this;
+    btnChildNodes = btn.children[0];
+    let inputNode = btn.previousElementSibling;
+    let input = inputNode.value;
+    console.log(input);
+    if (input == '') return null;
+    btnChildNodes.classList.toggle("show");
+}
+
+function hideTodoDDList() {
+    var btn = this;
+    // btnChildNodes = btn.children[0];
+    btn.classList.toggle("show");
+}
+
+//Create item 
+
+function createBodyItem() {
+    bodyItem = document.createElement('li');
+    bodyItem.setAttribute("class", "body__item");
+    return bodyItem;
+}
+
+//Set value and ID of item
+var count = 0;
+function setBodyItem() {
+    let currentNode = document.getElementById(btnID);
+    let inputNode = currentNode.previousElementSibling;
+    let input = inputNode.value;
+    if (input == '') return null;
+    createBodyItem();
+    bodyItem.innerHTML = input;
+    count++;
+    bodyItem.setAttribute("id", `body__item${count}`);
+    return bodyItem;
+}
+
+//create done button for item
+function createDoneBtnForItem() {
+    bodyDoneBtn = document.createElement('button');
+    bodyDoneBtn.setAttribute("class", `body__btn--done`);
+    bodyDoneBtn.innerHTML = "done";
+    bodyDoneBtn.addEventListener('click', removeItemWithDoneBtn)
+    return bodyDoneBtn;
+}
+
+//add item and button to list
+function addTodoItemToList() {
+    setBodyItem();
+    createDoneBtnForItem();
+    bodyItem.appendChild(bodyDoneBtn)
+    TODO_LIST.appendChild(bodyItem);
+    TODO_INPUT.value = '';
+}
+
+
+//functions to remove parent of done button (li element) on click
+
+function removeItemWithDoneBtn () {
+    var li = this.parentNode;
+    removeElementByID(li.id);
+}
+
+function removeElementByID(id) {
+    var elem = document.getElementById(id);
+    return removeElement(elem);
+}
+
+function removeElement(elem) {
+    return elem.parentNode.removeChild(elem);
+}
+
 ///***///TODO LIST SECTION////***/////
 
 // Get elements from todo section
@@ -8,15 +93,8 @@ const TODO_DD_LIST = document.getElementById('body__DD--todo');
 const TODO_LIST = document.getElementById('body__list--todo');
 
 //Reveal drop down list on click of todo button
-TODO_BTN.addEventListener('click', showTodoDDList);
+TODO_BTN.addEventListener('click', showDDList);
 TODO_BTN.addEventListener('click', getBtnClicked);
-
-function showTodoDDList() {
-    if (TODO_INPUT.value == '') {
-        return null
-    }
-    TODO_DD_LIST.classList.toggle("show");
-}
 
 //create todo drop down list elements
 var todoDDList = ['No Set Day', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -30,89 +108,6 @@ for (var i = 0; i < todoDDList.length; i++) {
     TODO_DD_LIST.appendChild(todoDDElement);
 }
 
-function hideTodoDDList() {
-    TODO_DD_LIST.classList.toggle("show");
-}
-
-function addTodoItemToList() {
-    setBodyItem();
-    createDoneBtnForItem();
-    bodyItem.appendChild(todoDoneBtn)
-    TODO_LIST.appendChild(bodyItem);
-    TODO_INPUT.value = '';
-}
-
-var btnID;
-
-function getBtnClicked(){
-    var btn = this;
-    btnID = btn.id;
-}
-
-
-var count = 0;
-
-function setBodyItem() {
-    // debugger;
-    // btnID = getBtnClicked();
-    // debugger;
-    console.log(btnID);
-    let currentNode = document.getElementById(btnID);
-    // let currentNode = btnClicked;
-    let inputNode = currentNode.previousElementSibling;
-    let input = inputNode.value;
-    if (input == '') return null;
-    createBodyItem();
-    bodyItem.innerHTML = input;
-    count++;
-    bodyItem.setAttribute("id", `body__item${count}`);
-    return bodyItem;
-}
-
-
-//tetsing general item creation - just element
-function createBodyItem() {
-    bodyItem = document.createElement('li');
-    bodyItem.setAttribute("class", "body__item");
-    return bodyItem;
-}
-
-
-
-// function createBodyItem() {
-//     if (TODO_INPUT.value == '') return null;
-//     count++;
-//     todoItem = document.createElement('li');
-//     todoItem.setAttribute("id", `body__item${count}`);
-//     todoItem.setAttribute("class", "body__item");
-//     todoItem.innerHTML = TODO_INPUT.value;
-//     return todoItem;
-// }
-
-
-function createDoneBtnForItem() {
-    todoDoneBtn = document.createElement('button');
-    todoDoneBtn.setAttribute("class", `body__btn--done`);
-    todoDoneBtn.innerHTML = "done";
-    todoDoneBtn.addEventListener('click', removeItemWithDoneBtn)
-    return todoDoneBtn;
-}
-
-function removeItemWithDoneBtn () {
-    // debugger;
-    var li = this.parentNode;
-    removeElementByID(li.id);
-    // console.log(this);
-}
-
-function removeElementByID(id) {
-    var elem = document.getElementById(id);
-    return removeElement(elem);
-}
-
-function removeElement(elem) {
-    return elem.parentNode.removeChild(elem);
-}
 
 
 ///***///NOTES SECTION////***/////
