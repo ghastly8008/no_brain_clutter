@@ -115,12 +115,11 @@ for (var i = 0; i < todoDDList.length; i++) {
 const NOTE_BTN = document.getElementById('body__btn--note');
 const NOTE_DD_LIST = document.getElementById('body__DD--note');
 
-
 NOTE_BTN.addEventListener('click', showDDList);
 NOTE_BTN.addEventListener('click', getBtnClicked);
+NOTE_BTN.addEventListener('click', updateNoteDD);
 
-
-///*//edit note label section//*///
+///***//edit note label section//***///
 
 const EDIT_LABEL_SECTION = document.getElementById('note__editLabel__div');
 
@@ -150,23 +149,22 @@ for (var i = 0; i < (noteType.length); i++) {
 }
 
 //add label button feature
-var ul = document.getElementById('label__list--note');
-const addLabelBtn = document.getElementById("button__editLabel__add--note");
+const ADD_LABEL_BTN = document.getElementById("button__editLabel__add--note");
 
-addLabelBtn.addEventListener('click', function (e) {
-    const newField = document.createElement('input');
-    newField.setAttribute("id", `noteType${ul.childNodes.length}`)
-    LABEL_LIST.appendChild(newField);
+ADD_LABEL_BTN.addEventListener('click', function (e) {
+    const NEW_LABEL_INPUT = document.createElement('input');
+    NEW_LABEL_INPUT.setAttribute("id", `noteType${LABEL_LIST.childNodes.length}`)
+    LABEL_LIST.appendChild(NEW_LABEL_INPUT);
 });
 
 //return list to previous state and cancel when you hit cancel
 
-const cancelLabelBtn = document.getElementById('button_editLabel__default--note');
-cancelLabelBtn.addEventListener('click', function (e) {
+const CANCEL_LABEL_BTN = document.getElementById('button_editLabel__default--note');
+CANCEL_LABEL_BTN.addEventListener('click', function (e) {
     EDIT_LABEL_SECTION.classList.toggle("show");
 });
 
-cancelLabelBtn.addEventListener('click', returnToInitialState);
+CANCEL_LABEL_BTN.addEventListener('click', returnToInitialState);
 
 function returnToInitialState() {
     while (LABEL_LIST.firstChild) {
@@ -180,29 +178,23 @@ function returnToInitialState() {
     }
 }
 
-
-//add event to populate note list on label button click
-const labelBtn = document.getElementById('body__btn--note');
-labelBtn.addEventListener('click', updateNoteTypeLog);
-
 //remove label button feature
 
-const removeLabelBtn = document.getElementById("button__editLabel__remove--note");
+const REMOVE_LABEL_BTN = document.getElementById("button__editLabel__remove--note");
 
-removeLabelBtn.addEventListener('click', function (e) {
+REMOVE_LABEL_BTN.addEventListener('click', function (e) {
     let menu = LABEL_LIST;
     menu.removeChild(menu.lastElementChild);
 });
 
 //update button feature which updates noteType elements
 
-const updateLabelBtn = document.getElementById("button_editLabel__update--note");
-updateLabelBtn.addEventListener('click', updateNoteType);
-updateLabelBtn.addEventListener('click', updateNoteTypeLog);
+const UPDATE_LABEL_BTN = document.getElementById("button_editLabel__update--note");
+UPDATE_LABEL_BTN.addEventListener('click', updateNoteType);
+UPDATE_LABEL_BTN.addEventListener('click', updateNoteDD);
 
 function updateNoteType() {
-    var ul = document.getElementById('label__list--note');
-    var item = ul.getElementsByTagName("li");
+    var item = LABEL_LIST.getElementsByTagName("li");
     for (var i = 0; i < item.length; i++) {
         noteType.push(item[i]);
     }
@@ -212,16 +204,17 @@ function updateNoteType() {
 //create new array out of items in input fields in order to repopuate list with
 
 var updNoteType = [];
-function updateNoteTypeLog() {
+
+function updateNoteDD() {
     updNoteType = [];
     while (NOTE_DD_LIST.lastChild.id !== 'editLabelLink--note') {
         NOTE_DD_LIST.removeChild(NOTE_DD_LIST.lastChild);
     }
-    for (var i = 0; i < ul.childNodes.length; i++) {
+    for (var i = 0; i < LABEL_LIST.childNodes.length; i++) {
         var test = document.getElementById(`noteType${i}`);
         updNoteType.push(test.value);
     }
-    for (var i = 0; i < ul.childNodes.length; i++) {
+    for (var i = 0; i < LABEL_LIST.childNodes.length; i++) {
         var type = document.createElement('p');
         type.setAttribute("id", `body__DD__element--note${i}`);
         type.setAttribute("class", 'body__DD__element');
@@ -240,7 +233,6 @@ const goalsBtn = document.getElementById('body__btn--goal');
 const goalsList = document.getElementById('body__list--goal');
 
 goalsBtn.addEventListener('click', setGoal);
-
 
 function setGoal() {
     if (goalsInput.value == '') {
