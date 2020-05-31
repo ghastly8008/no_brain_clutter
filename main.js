@@ -16,15 +16,15 @@ function showDDList() {
     btnChildNodes = btn.children[0];
     let inputNode = btn.previousElementSibling;
     let input = inputNode.value;
-    console.log(input);
+    // console.log(input);
     if (input == '') return null;
     btnChildNodes.classList.toggle("show");
 }
 
-function hideTodoDDList() {
+function hideDDList() {
     var btn = this;
-    // btnChildNodes = btn.children[0];
-    btn.classList.toggle("show");
+    btnDD = btn.parentNode;
+    btnDD.classList.toggle("show");
 }
 
 //Create item 
@@ -59,14 +59,18 @@ function createDoneBtnForItem() {
 }
 
 //add item and button to list
-function addTodoItemToList() {
+function addItemToList() {
+    var btn = this;
+    bodyBtn = btn.parentNode.parentNode;
+    let inputNode = bodyBtn.previousElementSibling;
+    let input = inputNode.value;
     setBodyItem();
     createDoneBtnForItem();
+    bodyList = bodyBtn.nextElementSibling;
     bodyItem.appendChild(bodyDoneBtn)
-    TODO_LIST.appendChild(bodyItem);
-    TODO_INPUT.value = '';
+    bodyList.appendChild(bodyItem);
+    inputNode.value = '';
 }
-
 
 //functions to remove parent of done button (li element) on click
 
@@ -87,10 +91,10 @@ function removeElement(elem) {
 ///***///TODO LIST SECTION////***/////
 
 // Get elements from todo section
-const TODO_INPUT = document.getElementById('body__input--todo');
+// const TODO_INPUT = document.getElementById('body__input--todo');
 const TODO_BTN = document.getElementById('body__btn--todo');
 const TODO_DD_LIST = document.getElementById('body__DD--todo');
-const TODO_LIST = document.getElementById('body__list--todo');
+// const TODO_LIST = document.getElementById('body__list--todo');
 
 //Reveal drop down list on click of todo button
 TODO_BTN.addEventListener('click', showDDList);
@@ -103,8 +107,8 @@ for (var i = 0; i < todoDDList.length; i++) {
     todoDDElement.setAttribute("class", 'body__DD__element');
     todoDDElement.setAttribute("id", `body__DD__element--todo${i}`);
     todoDDElement.innerHTML = todoDDList[i];
-    todoDDElement.addEventListener('click', addTodoItemToList);
-    todoDDElement.addEventListener('click', hideTodoDDList);
+    todoDDElement.addEventListener('click', addItemToList);
+    todoDDElement.addEventListener('click', hideDDList);
     TODO_DD_LIST.appendChild(todoDDElement);
 }
 
@@ -113,95 +117,59 @@ for (var i = 0; i < todoDDList.length; i++) {
 ///***///NOTES SECTION////***/////
 
 const noteInput = document.getElementById('body__input--note');
-const noteBtn = document.getElementById('body__btn--note');
+const NOTE_BTN = document.getElementById('body__btn--note');
 const noteDDList = document.getElementById('body__DD--note');
 const noteList = document.getElementById('body__list--note');
 
-noteBtn.addEventListener('click', noteBtnClk);
+// noteBtn.addEventListener('click', noteBtnClk);
+
+NOTE_BTN.addEventListener('click', showDDList);
+NOTE_BTN.addEventListener('click', getBtnClicked);
 
 //create type list for noteBtn
 var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
 
 
-//create element and check off button and add to task list
-function addNote() {
-    if (noteInput.value == '') return null
-
-    var note = document.createElement('li'); //create li element
-    note.setAttribute("class", "body__item");
-    // note.setAttribute("id", `body__item--note`); //set id of item element   
-
-    var noteValue = noteInput.value; //create variable = input value
-    note.innerHTML = noteValue; //set li html = input value
-
-    noteList.appendChild(note);
-
-    noteInput.value = ''; //set input field blank after item submitted
-
-    const doneNoteBtn = document.createElement('button');
-    doneNoteBtn.setAttribute("class", `body__btn--done`);
-    doneNoteBtn.setAttribute("id", `body__btn--done--note`);
-    doneNoteBtn.innerHTML = "done";
-    doneNoteBtn.addEventListener('click', function (e) {
-        noteList.removeChild(note);
-    });
-
-    note.appendChild(doneNoteBtn);
-
-}
-
-//function to show and hide note list when noteBtn is clicked
-function noteBtnClk() {
-    if (noteInput.value == '') {
-        return null
-    }
-    noteDDList.classList.toggle("show");
-}
-
-function hideNoteList() {
-    noteDDList.classList.toggle("show");
-}
 
 
-///***///PERSONAL GOALS SECTION////***/////
+// //create element and check off button and add to task list
+// function addNote() {
+//     if (noteInput.value == '') return null
 
-const goalsDiv = document.getElementById('body__div--goal');
-const goalsInput = document.getElementById('body__input--goal');
-const goalsBtn = document.getElementById('body__btn--goal');
-const goalsList = document.getElementById('body__list--goal');
+//     var note = document.createElement('li'); //create li element
+//     note.setAttribute("class", "body__item");
+//     // note.setAttribute("id", `body__item--note`); //set id of item element   
 
-goalsBtn.addEventListener('click', setGoal);
+//     var noteValue = noteInput.value; //create variable = input value
+//     note.innerHTML = noteValue; //set li html = input value
 
+//     noteList.appendChild(note);
 
-function setGoal() {
-    if (goalsInput.value == '') {
-        return null
-    }
-    //daysList.classList.toggle("show");   
-    var count = 0;
-    count++;
-    var goal = document.createElement('li'); //create li element
-    goal.setAttribute("class", "body__item");
-    goal.setAttribute("id", `body__item--goal${count}`);
-    goalsList.appendChild(goal);
+//     noteInput.value = ''; //set input field blank after item submitted
 
-    var goalValue = goalsInput.value; //create variable = input value
-    goal.innerHTML = goalValue; //set li html = input value
+//     const doneNoteBtn = document.createElement('button');
+//     doneNoteBtn.setAttribute("class", `body__btn--done`);
+//     doneNoteBtn.setAttribute("id", `body__btn--done--note`);
+//     doneNoteBtn.innerHTML = "done";
+//     doneNoteBtn.addEventListener('click', function (e) {
+//         noteList.removeChild(note);
+//     });
 
-    goalsInput.value = ''; //set input field blank after item submitted
+//     note.appendChild(doneNoteBtn);
 
-    const setGoalsBtn = document.createElement('button');
-    setGoalsBtn.setAttribute("class", `body__btn--done`);
-    setGoalsBtn.setAttribute("id", `body__btn--done--goal`);
-    setGoalsBtn.innerHTML = "X";
-    setGoalsBtn.addEventListener('click', function (e) {
-        goalsList.removeChild(goal);
-    });
+// }
 
-    goal.appendChild(setGoalsBtn);
-}
+// //function to show and hide note list when noteBtn is clicked
+// function noteBtnClk() {
+//     if (noteInput.value == '') {
+//         return null
+//     }
+//     noteDDList.classList.toggle("show");
+// }
 
-
+// function hideNoteList() {
+//     noteDDList.classList.toggle("show");
+// }
 
 ///***///EDIT LABELS SECTION////***/////
 
@@ -308,12 +276,52 @@ function updateNoteTypeLog() {
         type.setAttribute("id", `body__DD__element--note${i}`);
         type.setAttribute("class", 'body__DD__element');
         type.innerHTML = updNoteType[i];
-        type.addEventListener('click', addNote);
-        type.addEventListener('click', hideNoteList);
+        type.addEventListener('click', addItemToList);
+        type.addEventListener('click', hideDDList);
         noteDDList.appendChild(type);
     }
 }
 
+
+
+
+///***///PERSONAL GOALS SECTION////***/////
+
+const goalsDiv = document.getElementById('body__div--goal');
+const goalsInput = document.getElementById('body__input--goal');
+const goalsBtn = document.getElementById('body__btn--goal');
+const goalsList = document.getElementById('body__list--goal');
+
+goalsBtn.addEventListener('click', setGoal);
+
+
+function setGoal() {
+    if (goalsInput.value == '') {
+        return null
+    }
+    //daysList.classList.toggle("show");   
+    var count = 0;
+    count++;
+    var goal = document.createElement('li'); //create li element
+    goal.setAttribute("class", "body__item");
+    goal.setAttribute("id", `body__item--goal${count}`);
+    goalsList.appendChild(goal);
+
+    var goalValue = goalsInput.value; //create variable = input value
+    goal.innerHTML = goalValue; //set li html = input value
+
+    goalsInput.value = ''; //set input field blank after item submitted
+
+    const setGoalsBtn = document.createElement('button');
+    setGoalsBtn.setAttribute("class", `body__btn--done`);
+    setGoalsBtn.setAttribute("id", `body__btn--done--goal`);
+    setGoalsBtn.innerHTML = "X";
+    setGoalsBtn.addEventListener('click', function (e) {
+        goalsList.removeChild(goal);
+    });
+
+    goal.appendChild(setGoalsBtn);
+}
 
 
 
