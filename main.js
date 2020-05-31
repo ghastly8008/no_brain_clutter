@@ -91,12 +91,10 @@ function removeElement(elem) {
 ///***///TODO LIST SECTION////***/////
 
 // Get elements from todo section
-// const TODO_INPUT = document.getElementById('body__input--todo');
 const TODO_BTN = document.getElementById('body__btn--todo');
 const TODO_DD_LIST = document.getElementById('body__DD--todo');
-// const TODO_LIST = document.getElementById('body__list--todo');
 
-//Reveal drop down list on click of todo button
+
 TODO_BTN.addEventListener('click', showDDList);
 TODO_BTN.addEventListener('click', getBtnClicked);
 
@@ -112,91 +110,43 @@ for (var i = 0; i < todoDDList.length; i++) {
     TODO_DD_LIST.appendChild(todoDDElement);
 }
 
+///***///NOTE SECTION////***/////
 
-
-///***///NOTES SECTION////***/////
-
-const noteInput = document.getElementById('body__input--note');
 const NOTE_BTN = document.getElementById('body__btn--note');
-const noteDDList = document.getElementById('body__DD--note');
-const noteList = document.getElementById('body__list--note');
+const NOTE_DD_LIST = document.getElementById('body__DD--note');
 
-// noteBtn.addEventListener('click', noteBtnClk);
 
 NOTE_BTN.addEventListener('click', showDDList);
 NOTE_BTN.addEventListener('click', getBtnClicked);
 
-//create type list for noteBtn
-var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
 
+///*//edit note label section//*///
 
+const EDIT_LABEL_SECTION = document.getElementById('note__editLabel__div');
 
-
-// //create element and check off button and add to task list
-// function addNote() {
-//     if (noteInput.value == '') return null
-
-//     var note = document.createElement('li'); //create li element
-//     note.setAttribute("class", "body__item");
-//     // note.setAttribute("id", `body__item--note`); //set id of item element   
-
-//     var noteValue = noteInput.value; //create variable = input value
-//     note.innerHTML = noteValue; //set li html = input value
-
-//     noteList.appendChild(note);
-
-//     noteInput.value = ''; //set input field blank after item submitted
-
-//     const doneNoteBtn = document.createElement('button');
-//     doneNoteBtn.setAttribute("class", `body__btn--done`);
-//     doneNoteBtn.setAttribute("id", `body__btn--done--note`);
-//     doneNoteBtn.innerHTML = "done";
-//     doneNoteBtn.addEventListener('click', function (e) {
-//         noteList.removeChild(note);
-//     });
-
-//     note.appendChild(doneNoteBtn);
-
-// }
-
-// //function to show and hide note list when noteBtn is clicked
-// function noteBtnClk() {
-//     if (noteInput.value == '') {
-//         return null
-//     }
-//     noteDDList.classList.toggle("show");
-// }
-
-// function hideNoteList() {
-//     noteDDList.classList.toggle("show");
-// }
-
-///***///EDIT LABELS SECTION////***/////
-
-const editLabelSection = document.getElementById('note__editLabel__div');
-
-const editLabelBtn = document.createElement('p');
-editLabelBtn.innerHTML = " Edit Labels";
-editLabelBtn.setAttribute("id", 'editLabelLink--note');
-editLabelBtn.setAttribute("class", 'body__DD__element');
-noteDDList.appendChild(editLabelBtn);
-editLabelBtn.addEventListener('click', genLabelEdit);
+const EDIT_LABEL_BTN = document.createElement('p');
+EDIT_LABEL_BTN.innerHTML = " Edit Labels";
+EDIT_LABEL_BTN.setAttribute("id", 'editLabelLink--note');
+EDIT_LABEL_BTN.setAttribute("class", 'body__DD__element');
+NOTE_DD_LIST.appendChild(EDIT_LABEL_BTN);
+EDIT_LABEL_BTN.addEventListener('click', displayLabelEditSection);
 
 //function that displays editLabelsSection
 
-function genLabelEdit() {
-    editLabelSection.classList.toggle("show");
+function displayLabelEditSection() {
+    EDIT_LABEL_SECTION.classList.toggle("show");
 }
 
 //create edit labels section with orginal "noteType" list
+var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
 
-labelList = document.getElementById('label__list--note');
+const LABEL_LIST = document.getElementById('label__list--note');
 
 for (var i = 0; i < (noteType.length); i++) {
-    const labelInput = document.createElement('input');
-    labelInput.setAttribute("id", `noteType${i}`)
-    labelInput.value = noteType[i];
-    labelList.appendChild(labelInput);
+    const LABEL_INPUT = document.createElement('input');
+    LABEL_INPUT.setAttribute("id", `noteType${i}`)
+    LABEL_INPUT.value = noteType[i];
+    LABEL_LIST.appendChild(LABEL_INPUT);
 }
 
 //add label button feature
@@ -206,27 +156,27 @@ const addLabelBtn = document.getElementById("button__editLabel__add--note");
 addLabelBtn.addEventListener('click', function (e) {
     const newField = document.createElement('input');
     newField.setAttribute("id", `noteType${ul.childNodes.length}`)
-    labelList.appendChild(newField);
+    LABEL_LIST.appendChild(newField);
 });
 
 //return list to previous state and cancel when you hit cancel
 
 const cancelLabelBtn = document.getElementById('button_editLabel__default--note');
 cancelLabelBtn.addEventListener('click', function (e) {
-    editLabelSection.classList.toggle("show");
+    EDIT_LABEL_SECTION.classList.toggle("show");
 });
 
 cancelLabelBtn.addEventListener('click', returnToInitialState);
 
 function returnToInitialState() {
-    while (labelList.firstChild) {
-        labelList.removeChild(labelList.lastChild);
+    while (LABEL_LIST.firstChild) {
+        LABEL_LIST.removeChild(LABEL_LIST.lastChild);
     }
     for (var i = 0; i < (noteType.length); i++) {
-        const labelInput = document.createElement('input');
-        labelInput.setAttribute("id", `noteType${i}`)
-        labelInput.value = noteType[i];
-        labelList.appendChild(labelInput);
+        const LABEL_INPUT = document.createElement('input');
+        LABEL_INPUT.setAttribute("id", `noteType${i}`)
+        LABEL_INPUT.value = noteType[i];
+        LABEL_LIST.appendChild(LABEL_INPUT);
     }
 }
 
@@ -240,7 +190,7 @@ labelBtn.addEventListener('click', updateNoteTypeLog);
 const removeLabelBtn = document.getElementById("button__editLabel__remove--note");
 
 removeLabelBtn.addEventListener('click', function (e) {
-    let menu = labelList;
+    let menu = LABEL_LIST;
     menu.removeChild(menu.lastElementChild);
 });
 
@@ -256,7 +206,7 @@ function updateNoteType() {
     for (var i = 0; i < item.length; i++) {
         noteType.push(item[i]);
     }
-    editLabelSection.classList.toggle("show");
+    EDIT_LABEL_SECTION.classList.toggle("show");
 }
 
 //create new array out of items in input fields in order to repopuate list with
@@ -264,8 +214,8 @@ function updateNoteType() {
 var updNoteType = [];
 function updateNoteTypeLog() {
     updNoteType = [];
-    while (noteDDList.lastChild.id !== 'editLabelLink--note') {
-        noteDDList.removeChild(noteDDList.lastChild);
+    while (NOTE_DD_LIST.lastChild.id !== 'editLabelLink--note') {
+        NOTE_DD_LIST.removeChild(NOTE_DD_LIST.lastChild);
     }
     for (var i = 0; i < ul.childNodes.length; i++) {
         var test = document.getElementById(`noteType${i}`);
@@ -278,12 +228,9 @@ function updateNoteTypeLog() {
         type.innerHTML = updNoteType[i];
         type.addEventListener('click', addItemToList);
         type.addEventListener('click', hideDDList);
-        noteDDList.appendChild(type);
+        NOTE_DD_LIST.appendChild(type);
     }
 }
-
-
-
 
 ///***///PERSONAL GOALS SECTION////***/////
 
