@@ -114,9 +114,9 @@ for (var i = 0; i < todoDDList.length; i++) {
 const NOTE_BTN = document.getElementById('body__btn--note');
 const NOTE_DD_LIST = document.getElementById('body__DD--note');
 
-NOTE_BTN.addEventListener('click', showDDList);
 NOTE_BTN.addEventListener('click', getBtnClicked);
 NOTE_BTN.addEventListener('click', updateNoteDD);
+NOTE_BTN.addEventListener('click', showDDList);
 
 ///***//edit note label section//***///
 
@@ -148,13 +148,13 @@ for (var i = 0; i < (noteType.length); i++) {
 }
 
 //add label button feature
-const ADD_LABEL_BTN = document.getElementById("button__editLabel__add--note");
+// const ADD_LABEL_BTN = document.getElementById("button__editLabel__add--note");
 
-ADD_LABEL_BTN.addEventListener('click', function (e) {
-    const NEW_LABEL_INPUT = document.createElement('input');
-    NEW_LABEL_INPUT.setAttribute("id", `noteType${LABEL_LIST.childNodes.length}`)
-    LABEL_LIST.appendChild(NEW_LABEL_INPUT);
-});
+// ADD_LABEL_BTN.addEventListener('click', function (e) {
+//     const NEW_LABEL_INPUT = document.createElement('input');
+//     NEW_LABEL_INPUT.setAttribute("id", `noteType${LABEL_LIST.childNodes.length}`)
+//     LABEL_LIST.appendChild(NEW_LABEL_INPUT);
+// });
 
 //return list to previous state and cancel when you hit cancel
 
@@ -224,6 +224,19 @@ function updateNoteDD() {
     }
 }
 
+// function showNoteDDList (){
+// for (var i = 0; i < LABEL_LIST.childNodes.length; i++) {
+//     var type = document.createElement('p');
+//     type.setAttribute("id", `body__DD__element--note${i}`);
+//     type.setAttribute("class", 'body__DD__element');
+//     type.innerHTML = updNoteType[i];
+//     type.addEventListener('click', addItemToList);
+//     // type.addEventListener('click', hideDDList);
+//     NOTE_DD_LIST.appendChild(type);
+//     console.log(type);
+// }
+// }
+
 ///***///PERSONAL GOALS SECTION////***/////
 
 const GOAL_BTN = document.getElementById('body__btn--goal');
@@ -243,8 +256,5 @@ function addGoalToList() {
     bodyList.appendChild(bodyItem);
     inputNode.value = '';
 }
-
-
-
 
 
