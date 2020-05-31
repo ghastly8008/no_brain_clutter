@@ -3,19 +3,21 @@
 
 const EDIT_LABEL_SECTION = document.getElementById('note__editLabel__div');
 
+//create edit label button and assign display function to it
 const EDIT_LABEL_BTN = document.createElement('p');
+
 EDIT_LABEL_BTN.innerHTML = " Edit Labels";
 EDIT_LABEL_BTN.setAttribute("id", 'editLabelLink--note');
 EDIT_LABEL_BTN.setAttribute("class", 'body__DD__element');
 NOTE_DD_LIST.appendChild(EDIT_LABEL_BTN);
-EDIT_LABEL_BTN.addEventListener('click', displayLabelEditSection);
+EDIT_LABEL_BTN.addEventListener('click', toggleDisplayLabelEditSection);
 
-
-function displayLabelEditSection() {
+//function to display edit label section
+function toggleDisplayLabelEditSection() {
     EDIT_LABEL_SECTION.classList.toggle("show");
 }
 
-//add label button feature
+//"add" button in edit label section
 const ADD_LABEL_BTN = document.getElementById("button__editLabel__add--note");
 
 ADD_LABEL_BTN.addEventListener('click', function (e) {
@@ -24,7 +26,7 @@ ADD_LABEL_BTN.addEventListener('click', function (e) {
     LABEL_LIST.appendChild(NEW_LABEL_INPUT);
 });
 
-//remove label button feature
+//"remove" button in edit label section
 
 const REMOVE_LABEL_BTN = document.getElementById("button__editLabel__remove--note");
 
@@ -33,29 +35,14 @@ REMOVE_LABEL_BTN.addEventListener('click', function (e) {
     menu.removeChild(menu.lastElementChild);
 });
 
-//update button feature which updates noteType elements
-
-const UPDATE_LABEL_BTN = document.getElementById("button_editLabel__update--note");
-UPDATE_LABEL_BTN.addEventListener('click', updateNoteType);
-UPDATE_LABEL_BTN.addEventListener('click', updateNoteDD);
-
-function updateNoteType() {
-    var item = LABEL_LIST.getElementsByTagName("li");
-    for (var i = 0; i < item.length; i++) {
-        noteType.push(item[i]);
-    }
-    EDIT_LABEL_SECTION.classList.toggle("show");
-}
+//"default" button in edit label section which returns orignal noteType elements to DD
 
 const DEFAULT_LABEL_BTN = document.getElementById('button_editLabel__default--note');
 DEFAULT_LABEL_BTN.addEventListener('click', function (e) {
     EDIT_LABEL_SECTION.classList.toggle("show");
 });
 
-//return list to original state when you hit default button
-
 DEFAULT_LABEL_BTN.addEventListener('click', returnToInitialState);
-
 function returnToInitialState() {
     while (LABEL_LIST.firstChild) {
         LABEL_LIST.removeChild(LABEL_LIST.lastChild);
@@ -68,19 +55,30 @@ function returnToInitialState() {
     }
 }
 
-var updNoteType = [];
+//"update" button which updates noteType elements
+
 NOTE_BTN.addEventListener('click', updateNoteDD);
 
+const UPDATE_LABEL_BTN = document.getElementById("button_editLabel__update--note");
+UPDATE_LABEL_BTN.addEventListener('click', toggleDisplayLabelEditSection);
+UPDATE_LABEL_BTN.addEventListener('click', updateNoteDD);
+
+//function below is called by 2 buttons. NOTE_BTN and UPDATE_LABEL_BTN
+//each time you hit NOTE_BTN it looks at updNoteType array to gen updated list
+
+var updNoteType = [];
 function updateNoteDD() {
-    updNoteType = [];
+    updNoteType = []; //starts with empty array
     while (NOTE_DD_LIST.lastChild.id !== 'editLabelLink--note') {
         NOTE_DD_LIST.removeChild(NOTE_DD_LIST.lastChild);
     } //<-- remove all child nodes of DD list except the "edit labels" one
-    
+
+    //updates updNoteType with input values from LABEL_LIST
     for (var i = 0; i < LABEL_LIST.childNodes.length; i++) {
         var test = document.getElementById(`noteType${i}`);
         updNoteType.push(test.value);
     }
+    //creates new note DD list with updNoteType that was just updated above
     for (var i = 0; i < LABEL_LIST.childNodes.length; i++) {
         var type = document.createElement('p');
         type.setAttribute("id", `body__DD__element--note${i}`);

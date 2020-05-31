@@ -1,4 +1,3 @@
-
 ///***///GENERAL////***/////
 
 //Find ID of button clicked 
@@ -118,9 +117,9 @@ NOTE_BTN.addEventListener('click', showDDList);
 
 //create edit labels section with orginal "noteType" list
 var noteType = ['Note', 'Idea', 'Reflection', 'Self Feedback', 'Other'];
-
 const LABEL_LIST = document.getElementById('label__list--note');
 
+//create input fields in the edit label section
 for (var i = 0; i < (noteType.length); i++) {
     const LABEL_INPUT = document.createElement('input');
     LABEL_INPUT.setAttribute("id", `noteType${i}`)
@@ -131,10 +130,8 @@ for (var i = 0; i < (noteType.length); i++) {
 ///***///PERSONAL GOALS SECTION////***/////
 
 const GOAL_BTN = document.getElementById('body__btn--goal');
-const GOAL_LIST = document.getElementById('body__list--goal');
 
 GOAL_BTN.addEventListener('click', getBtnClicked);
-
 GOAL_BTN.addEventListener('click', addGoalToList);
 
 function addGoalToList() {
