@@ -63,7 +63,6 @@ function addItemToList() {
     var btn = this;
     bodyBtn = btn.parentNode.parentNode;
     let inputNode = bodyBtn.previousElementSibling;
-    let input = inputNode.value;
     setBodyItem();
     createDoneBtnForItem();
     bodyList = bodyBtn.nextElementSibling;
@@ -227,41 +226,23 @@ function updateNoteDD() {
 
 ///***///PERSONAL GOALS SECTION////***/////
 
-const goalsDiv = document.getElementById('body__div--goal');
-const goalsInput = document.getElementById('body__input--goal');
-const goalsBtn = document.getElementById('body__btn--goal');
-const goalsList = document.getElementById('body__list--goal');
+const GOAL_BTN = document.getElementById('body__btn--goal');
+const GOAL_LIST = document.getElementById('body__list--goal');
 
-goalsBtn.addEventListener('click', setGoal);
+GOAL_BTN.addEventListener('click', getBtnClicked);
 
-function setGoal() {
-    if (goalsInput.value == '') {
-        return null
-    }
-    //daysList.classList.toggle("show");   
-    var count = 0;
-    count++;
-    var goal = document.createElement('li'); //create li element
-    goal.setAttribute("class", "body__item");
-    goal.setAttribute("id", `body__item--goal${count}`);
-    goalsList.appendChild(goal);
+GOAL_BTN.addEventListener('click', addGoalToList);
 
-    var goalValue = goalsInput.value; //create variable = input value
-    goal.innerHTML = goalValue; //set li html = input value
-
-    goalsInput.value = ''; //set input field blank after item submitted
-
-    const setGoalsBtn = document.createElement('button');
-    setGoalsBtn.setAttribute("class", `body__btn--done`);
-    setGoalsBtn.setAttribute("id", `body__btn--done--goal`);
-    setGoalsBtn.innerHTML = "X";
-    setGoalsBtn.addEventListener('click', function (e) {
-        goalsList.removeChild(goal);
-    });
-
-    goal.appendChild(setGoalsBtn);
+function addGoalToList() {
+    var btn = this;
+    let inputNode = btn.previousElementSibling;
+    setBodyItem();
+    createDoneBtnForItem();
+    bodyList = btn.nextElementSibling;
+    bodyItem.appendChild(bodyDoneBtn)
+    bodyList.appendChild(bodyItem);
+    inputNode.value = '';
 }
-
 
 
 
