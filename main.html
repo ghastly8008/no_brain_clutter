@@ -23,8 +23,19 @@
                     <strong>are</strong> proud
                     of?</p>
                 <textarea class="input header__input" id="input--proud"></textarea>
-                <button type="button" class="header__quickFeedback__btn">Enter</button>
-
+                <button type="button" class="header__quickFeedback__enterBtn"
+                    id="header__quickFeedback__enterBtn--proud">Enter</button>
+                <button type="button" class="header__quickFeedback__historyBtn"
+                    id="header__quickFeedback__historyBtn--proud">History</button>
+                <!-- The Modal -->
+                <div class="modal" id="quickFeedback__modal--proud">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p class="modal__header">Proud Of</p>
+                        <ul class="quickFeedback__list"></ul>
+                    </div>
+                </div>
             </div>
             <!-- not proud section -->
             <div class="header__quickFeedback__div" id="header__notProudDiv">
@@ -32,10 +43,22 @@
                     <strong>not</strong>
                     proud of?</p>
                 <textarea class="input header__input" id="input--notProud"></textarea>
-                <button type="button" class="header__quickFeedback__btn">Enter</button>
-
+                <button type="button" class="header__quickFeedback__enterBtn"
+                    id="header__quickFeedback__enterBtn--notProud">Enter</button>
+                <button type="button" class="header__quickFeedback__historyBtn"
+                    id="header__quickFeedback__historyBtn--notProud">History</button>
+                <!-- The Modal -->
+                <div class="modal" id="quickFeedback__modal--notProud">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p class="modal__header">Not Proud Of</p>
+                        <ul class="quickFeedback__list"></ul>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
     <div id="body__wrapper">
         <!-- THING TO-DO SECTION -->
@@ -80,6 +103,6 @@
             </div>
         </div>
 </body>
-
 <script src="main.js"></script>
 <script src="edit_note_labels.js"></script>
+<script src="modal.js"></script>

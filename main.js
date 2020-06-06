@@ -1,5 +1,18 @@
 ///***///GENERAL////***/////
 
+//auto resize textera input boxes
+
+const INPUT = document.getElementsByClassName('input');
+for (let i = 0; i < INPUT.length; i++) {
+  INPUT[i].setAttribute('style', 'height:' + (INPUT[i].scrollHeight) + 'px;overflow-y:hidden;');
+  INPUT[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+}
+
 //Find ID of button clicked 
 
 var btnID;
@@ -15,7 +28,6 @@ function showDDList() {
     btnChildNodes = btn.children[0];
     let inputNode = btn.previousElementSibling;
     let input = inputNode.value;
-    // console.log(input);
     if (input == '') return null;
     btnChildNodes.classList.toggle("show");
 }
@@ -27,7 +39,6 @@ function hideDDList() {
 }
 
 //Create item 
-
 function createBodyItem() {
     bodyItem = document.createElement('li');
     bodyItem.setAttribute("class", "body__item");
