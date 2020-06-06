@@ -3,13 +3,13 @@
 // QUICK FEEDBACK MODALS DISPLAY AND CLOSE
 const MODAL = document.getElementsByClassName('modal');
 const MODAL_HISTORY_BTN = document.getElementsByClassName("header__quickFeedback__historyBtn");
-const MODAL_PROUD_CLOSE_BTN = document.getElementsByClassName("close");
+const MODAL_CLOSE_BTN = document.getElementsByClassName("modal__close");
 
 //add functions above to both modal hsitory buttons
 
 for(var i=0; i < 2; i++) {
     MODAL_HISTORY_BTN[i].addEventListener('click', displayModal);
-    MODAL_PROUD_CLOSE_BTN[i].addEventListener('click', closeModalOnSpanClick);
+    MODAL_CLOSE_BTN[i].addEventListener('click', closeModalOnSpanClick);
 }
 
 function displayModal() {
@@ -76,7 +76,7 @@ function setQuickFBItem() {
     let input = inputNode.value;
     if (input == '') return null;
     createQuickFBItem();
-    quickFBItem.innerHTML = `${month}/${day}:   ${input}`;
+    quickFBItem.innerHTML = `${month}/${day}:  ${input}`;
     itemCount++;
     quickFBItem.setAttribute("id", `quickFB__Item${itemCount}`);
     return quickFBItem;
